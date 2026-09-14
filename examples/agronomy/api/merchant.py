@@ -10,7 +10,7 @@ from __future__ import annotations
 from fastapi import APIRouter
 
 from commerce_common.memory import MemoryStore
-from demo_common import REPO_ROOT, MerchantIdentity, build_merchant_router
+from demo_common import REPO_ROOT, MerchantIdentity, build_merchant_router, demo_model_client
 from merchant_agent_runtime import MerchantAgent
 
 from .agent_config import build_merchant_config
@@ -28,6 +28,7 @@ def create_merchant_router(storefront: MockAgronomy, memory_store: MemoryStore) 
         skills_dir=REPO_ROOT / "merchant-agent" / "skills",
         config=config,
         memory_store=memory_store,
+        client=demo_model_client(),
     )
     return build_merchant_router(
         storefront=storefront,

@@ -74,6 +74,32 @@ def host_approval_default() -> bool:
     return os.environ.get("MERCHANT_REQUIRE_HOST_APPROVAL", "1") != "0"
 
 
+def demo_model_client() -> Any | None:
+    """The client every example API hands both of its agents, or ``None`` to let the
+    Anthropic SDK build its own from the environment.
+
+    ``COMMERCE_DEMO_PROVIDER=foundry-openai`` selects an OpenAI-compatible Microsoft
+    Foundry deployment through ``commerce_common.foundry_openai``, authenticated with
+    Entra ID rather than an API key: set ``FOUNDRY_RESOURCE`` (the account name) and
+    ``FOUNDRY_DEPLOYMENT``. Use it only where no Anthropic model is deployed; an Anthropic
+    deployment is better served by ``AsyncAnthropicFoundry``, and the adapter's trade-offs
+    are listed in its module docstring. ``docs/deployment.md`` covers every other platform.
+    """
+    if os.environ.get("COMMERCE_DEMO_PROVIDER", "").lower() != "foundry-openai":
+        return None
+    from commerce_common.foundry_openai import AsyncFoundryOpenAI
+
+    resource = os.environ.get("FOUNDRY_RESOURCE")
+    deployment = os.environ.get("FOUNDRY_DEPLOYMENT")
+    if not (resource or os.environ.get("FOUNDRY_BASE_URL")) or not deployment:
+        raise RuntimeError(
+            "COMMERCE_DEMO_PROVIDER=foundry-openai needs FOUNDRY_DEPLOYMENT and either "
+            "FOUNDRY_RESOURCE or FOUNDRY_BASE_URL."
+        )
+    logger.info("Model calls go to Foundry deployment %r via Entra ID.", deployment)
+    return AsyncFoundryOpenAI(resource=resource, deployment=deployment)
+
+
 # The event loop holds only weak references to tasks, so fire-and-forget work (memory
 # extraction after a turn) is kept alive here until it completes.
 _background_tasks: set[asyncio.Task[Any]] = set()
@@ -88,7 +114,11 @@ def spawn_background(coro: Coroutine[Any, Any, object]) -> None:
 def _lifespan(on_startup: Sequence[Callable[[], Awaitable[None]]]):
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> AsyncIterator[None]:
-        if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")):
+        if not (
+            os.environ.get("ANTHROPIC_API_KEY")
+            or os.environ.get("ANTHROPIC_AUTH_TOKEN")
+            or os.environ.get("COMMERCE_DEMO_PROVIDER")
+        ):
             logger.info(
                 "No API key in the environment or .env files; the Anthropic SDK falls back "
                 "to its own credential chain. If chat returns auth errors, set "

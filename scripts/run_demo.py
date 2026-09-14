@@ -82,13 +82,13 @@ def find_free_port(preferred: int, span: int = 50) -> int:
         return sock.getsockname()[1]
 
 
-def env_file_has_key(path: Path) -> bool:
-    """True when the file sets a non-empty ANTHROPIC_API_KEY (a copied placeholder does not)."""
+def env_file_has_key(path: Path, name: str = "ANTHROPIC_API_KEY") -> bool:
+    """True when the file sets ``name`` to a non-empty value (a copied placeholder does not)."""
     if not path.exists():
         return False
     for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
         key, _, value = line.strip().partition("=")
-        if key.strip() == "ANTHROPIC_API_KEY" and value.strip().strip("\"'"):
+        if key.strip() == name and value.strip().strip("\"'"):
             return True
     return False
 
@@ -314,7 +314,16 @@ def main() -> int:
 
     if run_api and not reuse_api and not args.federated and not os.environ.get("ANTHROPIC_API_KEY"):
         env_file = EXAMPLES_DIR / args.vertical / ".env"
-        if not env_file_has_key(env_file) and not env_file_has_key(REPO_ROOT / ".env"):
+        # A configured non-Anthropic provider authenticates on its own, so no key is wanted.
+        provider = os.environ.get("COMMERCE_DEMO_PROVIDER") or any(
+            env_file_has_key(path, "COMMERCE_DEMO_PROVIDER")
+            for path in (env_file, REPO_ROOT / ".env")
+        )
+        if (
+            not provider
+            and not env_file_has_key(env_file)
+            and not env_file_has_key(REPO_ROOT / ".env")
+        ):
             print(
                 f"{YELLOW}No ANTHROPIC_API_KEY found; chat uses the SDK's credential chain if "
                 f"one is configured and otherwise returns an error event. To use a key:{RESET}\n"

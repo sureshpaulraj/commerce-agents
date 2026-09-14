@@ -18,5 +18,7 @@
 ``agent_sdk``         plumbing for the Agent SDK runtimes (needs ``claude-agent-sdk``)
 ``mcp_server``        plumbing for the reference MCP servers (needs ``mcp``)
 ``manifest``          resolves a Managed Agent manifest; ``scripts/deploy_managed_agent.sh`` runs it
+``foundry_openai``    ``AsyncFoundryOpenAI``: the Messages API over an OpenAI-compatible
+                      Microsoft Foundry deployment, for a tenant with no Anthropic model
 ``testing``           a scripted fake model client
 """

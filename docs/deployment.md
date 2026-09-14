@@ -123,6 +123,37 @@ agent = ShoppingAgent(
 The packages declare `anthropic>=0.91`, the release that adds `AsyncAnthropicBedrockMantle`,
 the newest of the client classes above.
 
+### When the tenant has no Anthropic deployment
+
+Every client above speaks the Messages API. A Microsoft Foundry tenant that cannot deploy
+an Anthropic model — Claude is a Marketplace offer, and a subscription with Marketplace
+purchases disabled by policy cannot subscribe to one — has no such endpoint to point at.
+`commerce_common.foundry_openai.AsyncFoundryOpenAI` fills the same `client=` seam against
+an OpenAI-compatible deployment instead, so both roles run unchanged on, say, a GPT
+deployment. It authenticates with Entra ID through `DefaultAzureCredential`: a managed
+identity in Azure, a developer login locally, and no API key either way.
+
+```python
+from commerce_common.foundry_openai import AsyncFoundryOpenAI
+
+agent = ShoppingAgent(
+    **common, client=AsyncFoundryOpenAI(resource="your-account", deployment="your-deployment")
+)
+```
+
+It needs `azure-identity`, and it is the last resort: `AsyncAnthropicFoundry` is the right
+client wherever an Anthropic deployment exists. Tools, the eager tool-call stream that
+renders presentation cards while they arrive, tool results, forced tool choice, and usage
+counts all survive the translation; explicit cache breakpoints and adaptive thinking do
+not, because the OpenAI surface has neither. Nothing the agent guarantees moves — gates,
+provenance, caps, and every server-side computation run outside the model. The module
+docstring states the full trade, and `commerce-common/tests/test_foundry_openai.py` pins
+the translation both ways.
+
+The example APIs reach it through `COMMERCE_DEMO_PROVIDER=foundry-openai` with
+`FOUNDRY_RESOURCE` and `FOUNDRY_DEPLOYMENT`; `demo_model_client()` in
+`examples/demo_common/host.py` is the one place that reads them.
+
 ## Agent SDK runtimes: the CLI environment
 
 The SDK runtimes construct no HTTP client. `claude-agent-sdk` starts the Claude Code CLI,

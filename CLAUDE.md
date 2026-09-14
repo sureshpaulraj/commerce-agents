@@ -7,6 +7,8 @@ paths each, five vertical examples, and a Claude Code plugin.
 ## Layout
 
 - `commerce-common/commerce_common/`: what both roles share; its `__init__` lists the modules.
+  `foundry_openai` is the odd one out: a platform adapter, not a mechanism, filling the
+  `client=` seam for a Foundry tenant with no Anthropic deployment (needs `azure-identity`).
 - `shopping-agent/core/shopping_agent/`: types, `StorefrontBackend`, config, prompt, `tools/`, gates, enrichment, executor.
 - `merchant-agent/core/merchant_agent/`: the merchant equivalents, plus `changes.py` and `analysis.py`.
 - `*/skills/`: five flows per role, one `SKILL.md` each.

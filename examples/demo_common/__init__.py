@@ -8,7 +8,13 @@ vertical's ``api/`` package constructs its backends, agents, and configs, mounts
 and adds only its own routes. This module exports what the verticals and their tests
 import; the fixture helpers are imported from their own modules."""
 
-from .host import REPO_ROOT, host_approval_default, load_demo_env, spawn_background
+from .host import (
+    REPO_ROOT,
+    demo_model_client,
+    host_approval_default,
+    load_demo_env,
+    spawn_background,
+)
 from .memory import MemorySeeder
 from .merchant import MerchantIdentity, build_merchant_router
 from .sessions import (
@@ -34,6 +40,7 @@ __all__ = [
     "UnknownSessionError",
     "build_merchant_router",
     "build_storefront_host",
+    "demo_model_client",
     "host_approval_default",
     "load_demo_env",
     "session_dependency",

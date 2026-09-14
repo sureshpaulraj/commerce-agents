@@ -26,6 +26,7 @@ from demo_common import (
     CartAddRequest,
     MemorySeeder,
     build_storefront_host,
+    demo_model_client,
     load_demo_env,
 )
 from shopping_agent import ProductDetails
@@ -46,6 +47,7 @@ agent = ShoppingAgent(
     config=build_shopping_config(),
     memory_store=JsonFileMemoryStore(DATA_DIR / ".memory-store.json"),
     extra_presentation_tools=[build_application_plan_extension()],
+    client=demo_model_client(),
 )
 
 

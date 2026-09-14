@@ -31,6 +31,20 @@ uvicorn agronomy.api.main:app --app-dir examples --reload --port 8004
 Chat needs `ANTHROPIC_API_KEY` in the repo-root `.env` or the environment; browsing the
 catalog, the portal's widgets, and `/showcase` do not.
 
+Without an Anthropic key, chat can run instead against an OpenAI-compatible Microsoft
+Foundry deployment, authenticated with Entra ID — a managed identity in Azure, a developer
+login locally. Put this in the repo-root `.env` and restart:
+
+```bash
+COMMERCE_DEMO_PROVIDER=foundry-openai
+FOUNDRY_RESOURCE=your-account          # the Foundry account name
+FOUNDRY_DEPLOYMENT=your-deployment     # e.g. a GPT deployment
+```
+
+The application plan is computed in `api/rates.py`, so it does not change with the model;
+what changes is who chooses the products and the rate. `docs/deployment.md` covers the
+trade-offs and every other platform.
+
 ## Try
 
 Storefront — the three turns run in order in one session:
