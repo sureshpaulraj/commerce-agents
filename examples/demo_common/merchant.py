@@ -46,7 +46,7 @@ from merchant_agent import (
 from merchant_agent.executor import MerchantToolExecutor
 from merchant_agent_runtime import MerchantAgent
 
-from .host import DemoStorefront, append_user_turn, stream_turn
+from .host import DemoStorefront, append_user_turn, demo_model_name, stream_turn
 from .memory import install_memory_routes
 from .sessions import SessionRecord, SessionStore, session_dependency
 
@@ -302,7 +302,7 @@ def build_merchant_router(
             "role": "merchant",
             "listings": len(storefront.products),
             "skills": agent.skills.names,
-            "model": agent.config.model,
+            "model": demo_model_name(agent.config.model),
         }
 
     return router

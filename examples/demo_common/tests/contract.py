@@ -214,13 +214,22 @@ def test_json_body_without_a_content_type_is_not_parsed(client):
     assert client.request("PATCH", "/api/memory", content=body, headers=text).status_code == 422
 
 
-def test_health_names_the_store_and_the_model(main, client, portal):
+def test_health_names_the_store_and_the_model(main, client, portal, monkeypatch):
+    # A developer's own .env selects a provider, so the default case is asserted with
+    # the substitution explicitly off rather than however the environment is set.
+    monkeypatch.delenv("COMMERCE_DEMO_PROVIDER", raising=False)
     storefront = client.get("/api/health").json()
     assert storefront["store"] == main.backend.store_name
     assert storefront["products"] == len(main.backend.products)
     assert storefront["model"] == main.agent.config.model
     portal_health = portal[0].get("/api/merchant/health").json()
     assert portal_health["store"] == main.backend.store_name and portal_health["role"] == "merchant"
+    # A Foundry deployment serves the turn in place of the configured model, so both
+    # health routes name the deployment rather than what the agent was configured with.
+    monkeypatch.setenv("COMMERCE_DEMO_PROVIDER", "foundry-openai")
+    monkeypatch.setenv("FOUNDRY_DEPLOYMENT", "a-deployment")
+    assert client.get("/api/health").json()["model"] == "a-deployment"
+    assert portal[0].get("/api/merchant/health").json()["model"] == "a-deployment"
 
 
 # -- memory --------------------------------------------------------------------------

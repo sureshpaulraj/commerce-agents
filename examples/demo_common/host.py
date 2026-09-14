@@ -100,6 +100,16 @@ def demo_model_client() -> Any | None:
     return AsyncFoundryOpenAI(resource=resource, deployment=deployment)
 
 
+def demo_model_name(configured: str) -> str:
+    """The model a health route names. ``demo_model_client`` substitutes a Foundry
+    deployment for the configured Anthropic model, so an agent's own ``config.model``
+    is not what served the turn; this reads the same environment that factory does.
+    """
+    if os.environ.get("COMMERCE_DEMO_PROVIDER", "").lower() != "foundry-openai":
+        return configured
+    return os.environ.get("FOUNDRY_DEPLOYMENT") or configured
+
+
 # The event loop holds only weak references to tasks, so fire-and-forget work (memory
 # extraction after a turn) is kept alive here until it completes.
 _background_tasks: set[asyncio.Task[Any]] = set()

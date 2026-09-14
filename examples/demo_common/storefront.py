@@ -37,7 +37,7 @@ from shopping_agent.gates import OPTIONS_GATE, PROVENANCE_GATE
 from shopping_agent.serialization import cart_payload as serialize_cart
 from shopping_agent_runtime import ShoppingAgent
 
-from .host import DemoStorefront, append_user_turn, build_app, stream_turn
+from .host import DemoStorefront, append_user_turn, build_app, demo_model_name, stream_turn
 from .memory import MemoryFactEdit, MemorySeeder, install_memory_routes
 from .sessions import SessionRecord, SessionStore, session_dependency
 from .storefront_fixtures import SUMMARY_EXCLUDES
@@ -272,7 +272,7 @@ def build_storefront_host(
             "store": backend.store_name,
             "products": len(backend.products),
             "skills": agent.skills.names,
-            "model": agent.config.model,
+            "model": demo_model_name(agent.config.model),
         }
 
     return host
