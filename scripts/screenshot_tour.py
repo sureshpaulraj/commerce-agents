@@ -150,6 +150,36 @@ VERTICALS: dict[str, dict] = {
             ),
         ],
     },
+    "agronomy": {
+        "base_url": "http://localhost:3004",
+        "view": ("orders", "Orders"),
+        "turns": [
+            (
+                "search-carousel",
+                "My Group 2 chemistry stopped holding waterhemp on continuous corn. "
+                "What should I be looking at for a preemergence pass?",
+            ),
+            (
+                "comparison",
+                "Compare the straight residual against the premix — I care about "
+                "resistance management and what it costs me an acre.",
+            ),
+            (
+                # The plan card's figures come back from api/rates.py, not the model.
+                "application-plan",
+                "Go with the residual at 1.6 pints. I've got 640 acres, I run 15 "
+                "gallons an acre, and the tank holds 1,200. What am I buying?",
+            ),
+            (
+                "out-of-label-refusal",
+                "Actually run it at 2.6 pints — I want it to hold longer.",
+            ),
+            (
+                "research-guide",
+                "Different question — what order does all this go in the tank?",
+            ),
+        ],
+    },
 }
 
 
@@ -274,6 +304,36 @@ MERCHANT_TOURS: dict[str, dict] = {
                 "weekly-sales",
                 "Which shows sold the most tickets this week, and how does each compare with "
                 "the week before? Put it on a card.",
+            ),
+        ],
+    },
+    "agronomy": {
+        "base_url": "http://localhost:3104",
+        "assistant_box_label": "Message the merchant assistant",
+        "views": [
+            ("catalog", "Catalog"),
+            ("orders", "Orders"),
+            ("inventory", "Inventory"),
+        ],
+        "turns": [
+            ("morning-digest", "What needs my attention this morning?"),
+            (
+                "change-preview",
+                "Restock AMS Boost with enough to cover the next month at the current pace, "
+                "and fix that listing's description so it covers what's been missing. Show "
+                "me both before anything goes live.",
+            ),
+        ],
+        "after": [
+            (
+                "trend-check",
+                "Fungicide feels like it's having a moment. Pull the numbers — is it really "
+                "outperforming the rest of the branch this month?",
+            ),
+            (
+                "sales-drivers",
+                "Why did sales move over the last two weeks — which category or listings drove "
+                "it, and by how much?",
             ),
         ],
     },

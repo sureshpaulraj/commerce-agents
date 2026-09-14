@@ -125,6 +125,32 @@ VERTICAL_TURNS: dict[str, list[dict[str, Any]]] = {
             "expect_events": {"cart_update", "turn_complete"},
         },
     ],
+    "agronomy": [
+        {
+            "message": (
+                "My Group 2 chemistry stopped holding waterhemp on continuous corn. "
+                "What should I be looking at for a preemergence pass?"
+            ),
+            "expect_tools": {"search_products"},
+            "expect_events": {"ui", "turn_complete"},
+        },
+        {
+            "message": (
+                "Compare the straight residual against the premix — I care about "
+                "resistance management and what it costs me an acre."
+            ),
+            "expect_tools": set(),
+            "expect_events": {"ui", "turn_complete"},
+        },
+        {
+            "message": (
+                "Go with the residual at 1.6 pints. I've got 640 acres, I run 15 gallons "
+                "an acre, and the tank holds 1,200. What am I buying?"
+            ),
+            "expect_tools": {"present_application_plan"},
+            "expect_events": {"ui", "turn_complete"},
+        },
+    ],
 }
 
 VERTICAL_APPS = {
@@ -132,6 +158,7 @@ VERTICAL_APPS = {
     "travel": "travel.api.main",
     "telecom": "telecom.api.main",
     "entertainment": "entertainment.api.main",
+    "agronomy": "agronomy.api.main",
 }
 
 # Merchant arcs, one or more per vertical. A ``portal_approve_kind`` step approves the
@@ -386,6 +413,43 @@ MERCHANT_TURNS: dict[str, dict[str, list[dict[str, Any]]]] = {
                 "expect_tools": {"query_metrics", "present_metrics"},
                 "expect_events": {"ui", "turn_complete"},
                 "forbid_tools": {"apply_change"},
+            },
+        ],
+    },
+    "agronomy": {
+        # The branch briefing, a restock with a listing fix, then after the approval the
+        # segment check the fixture's metrics support.
+        "morning": [
+            {
+                "message": "What needs my attention this morning?",
+                "expect_tools": {"get_business_snapshot"},
+                "expect_events": {"ui", "turn_complete"},
+                "forbid_tools": {"apply_change"},
+            },
+            {
+                "message": (
+                    "Restock AMS Boost with enough to cover the next month at the current "
+                    "pace, and fix that listing's description so it covers what's been "
+                    "missing. Show me both before anything goes live."
+                ),
+                "expect_tools": {"stage_inventory_action"},
+                "expect_events": {"ui", "change_update", "turn_complete"},
+                "forbid_tools": {"apply_change"},
+            },
+            {
+                "message": "Looks right — approve the restock.",
+                "expect_tools": {"apply_change"},
+                "expect_events": {"turn_complete"},
+                "forbid_applied_change": True,
+            },
+            {"portal_approve_kind": "inventory_action", "expect_stock_increase": "HA-1603"},
+            {
+                "message": (
+                    "Fungicide feels like it's having a moment. Pull the numbers — is it "
+                    "really outperforming the rest of the branch this month?"
+                ),
+                "expect_events": {"ui", "turn_complete"},
+                "forbid_tools": {"stage_price_update", "stage_promotion", "apply_change"},
             },
         ],
     },

@@ -39,7 +39,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 EXAMPLES_DIR = REPO_ROOT / "examples"
-NEXT = EXAMPLES_DIR / "node_modules" / ".bin" / "next"
+NEXT = EXAMPLES_DIR / "node_modules" / ".bin" / ("next.cmd" if os.name == "nt" else "next")
 
 VERTICALS: dict[str, dict[str, object]] = {
     "retail": {
@@ -51,6 +51,7 @@ VERTICALS: dict[str, dict[str, object]] = {
     "travel": {"api_port": 8001, "store": "ACME Travel"},
     "telecom": {"api_port": 8002, "store": "ACME Mobile"},
     "entertainment": {"api_port": 8003, "store": "ACME Tickets"},
+    "agronomy": {"api_port": 8004, "store": "Heartland Agronomy Supply"},
 }
 
 PYTHON_MODULES = (
@@ -145,7 +146,7 @@ def ensure_python_deps(install: bool) -> None:
 
 
 def ensure_web_deps(install: bool) -> None:
-    """The eight web apps share one npm workspace at examples/, installed once."""
+    """The ten web apps share one npm workspace at examples/, installed once."""
     if NEXT.exists():
         return
     if not install:
@@ -157,14 +158,35 @@ def ensure_web_deps(install: bool) -> None:
 
 
 def spawn(command: list[str], cwd: Path, env: dict[str, str] | None = None) -> subprocess.Popen:
+    extra: dict[str, object] = {}
+    if os.name == "nt":
+        # Windows has no process groups to signal; the tree is taken down by pid below.
+        extra["creationflags"] = subprocess.CREATE_NEW_PROCESS_GROUP
+    else:
+        extra["start_new_session"] = True  # each child owns a group, so shutdown takes its tree
     return subprocess.Popen(
         command,
         cwd=cwd,
         env=env,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
-        start_new_session=True,  # each child owns a process group, so shutdown takes its tree
+        **extra,  # type: ignore[arg-type]
     )
+
+
+def terminate_tree(process: subprocess.Popen, force: bool) -> None:
+    """Stop a child and everything it started. `next dev` spawns its own workers, so
+    killing the launcher alone would leave the port held."""
+    with contextlib.suppress(ProcessLookupError, PermissionError, OSError):
+        if os.name == "nt":
+            subprocess.run(
+                ["taskkill", "/T", "/F", "/PID", str(process.pid)],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                check=False,
+            )
+        else:
+            os.killpg(os.getpgid(process.pid), signal.SIGKILL if force else signal.SIGTERM)
 
 
 def start_api(vertical: str, port: int, federated: bool) -> subprocess.Popen:
@@ -343,15 +365,13 @@ def main() -> int:
     finally:
         for _, process in processes:
             if process.poll() is None:
-                with contextlib.suppress(ProcessLookupError, PermissionError):
-                    os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+                terminate_tree(process, force=False)
         deadline = time.monotonic() + 10
         for _, process in processes:
             try:
                 process.wait(timeout=max(0.1, deadline - time.monotonic()))
             except subprocess.TimeoutExpired:
-                with contextlib.suppress(ProcessLookupError, PermissionError):
-                    os.killpg(os.getpgid(process.pid), signal.SIGKILL)
+                terminate_tree(process, force=True)
 
 
 if __name__ == "__main__":

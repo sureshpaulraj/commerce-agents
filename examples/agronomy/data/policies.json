@@ -1,0 +1,88 @@
+{
+  "policies": [
+    {
+      "policy_id": "label-is-law",
+      "title": "The label is the law",
+      "category": "compliance",
+      "content": "Every product page here is a summary. The printed label that ships with the product is the legal document, and it controls. Where a rate, a crop, a target pest, a preharvest interval, or a rotation restriction differs between this site and the label in your hand, follow the label. Nothing on this site, and nothing an assistant on this site tells you, authorizes an application that the label does not. If a recommendation and a label disagree, stop and call your agronomist before the rig moves."
+    },
+    {
+      "policy_id": "restricted-use",
+      "title": "Restricted-use products and applicator licensing",
+      "category": "compliance",
+      "content": "Products marked restricted-use can only be sold to, and applied by or under the supervision of, a certified applicator. Your licence number and its expiry are held on your account. An order containing a restricted-use product cannot be completed until a current licence is verified, and verification happens in the portal against your account record. An assistant can put a restricted-use product in a draft order and can tell you what the restriction means, but it cannot verify a licence and it cannot complete that order."
+    },
+    {
+      "policy_id": "rate-calculations",
+      "title": "How application rates are calculated here",
+      "category": "compliance",
+      "content": "When this site shows an application plan, the arithmetic is done on our servers from the rate range stored against each product, not estimated in conversation. The plan states the rate per acre it used, the acres it was given, the resulting total product volume, the number of containers that implies, and the tank loads at the carrier volume you specified. A rate outside the stored label range is refused rather than rounded. If any of those inputs is wrong, change the input and have the plan recalculated rather than adjusting the output by hand."
+    },
+    {
+      "policy_id": "tank-mixing",
+      "title": "Tank mixing and compatibility",
+      "category": "application",
+      "content": "Mix order matters. Water conditioners such as ammonium sulfate go in first, then dry formulations, then flowables and suspension concentrates, then emulsifiable concentrates, then surfactants and oils last. Agitate through the whole fill. Any mix you have not run before should be jar tested at the same proportions before it goes in a full tank. Compatibility is not guaranteed between products from different manufacturers, and a mix that separates in the tank is not covered by any product warranty."
+    },
+    {
+      "policy_id": "sprayer-cleanout",
+      "title": "Sprayer cleanout between sensitive crops",
+      "category": "application",
+      "content": "Residue from a corn herbicide can injure soybeans at concentrations far below what a rinse removes. Triple rinse with a cleanout concentrate, pull and clean every screen and nozzle, and flush the boom ends. Cleanout is the applicator's responsibility. Crop injury attributed to inadequate cleanout is not a product defect and is not covered by the product warranty."
+    },
+    {
+      "policy_id": "drift-management",
+      "title": "Drift management and buffer requirements",
+      "category": "application",
+      "content": "Do not apply when wind is below three miles per hour or above ten, or during a temperature inversion. Use the droplet class the product label specifies; a drift reduction agent supports that requirement but does not replace the nozzle and pressure the label calls for. Downwind buffers to sensitive crops, water, and occupied areas are stated on each label and are enforceable. Check your state's sensitive crop registry before applying near specialty acres."
+    },
+    {
+      "policy_id": "returns",
+      "title": "Returns on crop inputs",
+      "category": "returns",
+      "content": "Unopened product in its original packaging with the seal intact can be returned within thirty days of delivery for a full refund. Opened chemical containers cannot be returned, because we cannot verify what is in them. Seed treatments and inoculants are not returnable at all once they leave our temperature-controlled storage. Equipment, nozzles, and personal protective equipment are returnable within thirty days if unused. Start a return in the portal; we arrange pickup for anything over fifty pounds."
+    },
+    {
+      "policy_id": "delivery",
+      "title": "Delivery, pickup, and bulk freight",
+      "category": "shipping",
+      "content": "Jugs, cases, and bags ship in two to four business days, free over $500 on the order total. Totes and pallet quantities move by freight on a scheduled delivery, typically within five business days, and need an accessible drop point and an unloading plan. Pickup at the Heartland branch is same day on anything the branch has on hand, and the portal shows branch stock separately from warehouse stock. During the planting and postemergence windows, freight schedules tighten; order bulk at least a week ahead of the intended application date."
+    },
+    {
+      "policy_id": "storage",
+      "title": "Storing crop inputs on farm",
+      "category": "handling",
+      "content": "Store chemicals in a locked, ventilated building away from feed, seed, and water sources, in the original labeled container. Keep liquids above freezing; a frozen and thawed suspension concentrate may never resuspend. Inoculants are living products and are the strictest case: below seventy-seven degrees, never frozen, and used within the season. Keep a current inventory and the safety data sheets where the fire department can reach them."
+    },
+    {
+      "policy_id": "container-disposal",
+      "title": "Container rinsing and disposal",
+      "category": "handling",
+      "content": "Pressure rinse or triple rinse every container as it is emptied and add the rinsate to the spray tank; a rinsed container is ordinary recycling under the agricultural container program, an unrinsed one is regulated waste. Do not reuse a chemical container for anything. The Heartland branch accepts rinsed, unlabeled jugs for the container recycling collection during the season."
+    },
+    {
+      "policy_id": "account-terms",
+      "title": "Grower account, prepay, and credit terms",
+      "category": "account",
+      "content": "Season prepay locks a price and is applied against deliveries through the crop year; unused prepay carries to the following season but is not refunded in cash. Open account terms are net thirty from delivery, and the portal shows your available credit before an order can be submitted. Pricing shown to your account reflects your program tier. An assistant can show you your own pricing and can draft an order, but credit decisions and order submission happen in the portal against your account."
+    },
+    {
+      "policy_id": "guide-residual-program",
+      "title": "Guide: building a residual herbicide program",
+      "category": "guide",
+      "content": "Start with the weed you actually have, not the one you sprayed last year. Waterhemp and palmer amaranth emerge over a long window, so a single pass will not hold them; plan overlapping residual, which means a preemergence pass and a second residual layered in with the post. Use two effective sites of action per pass where you can. Rate follows organic matter and pressure: the low end of a range on coarse, low-organic-matter ground, the high end where the weed history is heavy. Residual needs moisture to activate, so know what the forecast is before you commit."
+    },
+    {
+      "policy_id": "guide-fungicide-timing",
+      "title": "Guide: deciding whether and when to spray a fungicide",
+      "category": "guide",
+      "content": "A fungicide pays when disease is actually present or a susceptible hybrid meets a wet forecast, and it does not pay on a calendar. In corn, the VT to R2 window is where the yield response concentrates; in soybeans it is R1 to R3. Scout the lower canopy first. Coverage decides the result as much as chemistry does, so hold at least fifteen gallons of carrier per acre on a ground rig and slow down. Alternate modes of action across the season; a single-site product used twice in the same year is how resistance starts."
+    },
+    {
+      "policy_id": "guide-adjuvant-selection",
+      "title": "Guide: choosing the right adjuvant",
+      "category": "guide",
+      "content": "Read the herbicide label first, because the adjuvant requirement is on it and it is not optional. A nonionic surfactant improves spreading on most postemergence work. A methylated seed oil penetrates a waxy cuticle and helps on hardened late escapes, but it raises crop response risk in heat. Ammonium sulfate conditions hard water so the herbicide is not tied up by calcium and magnesium, and it goes in the tank before anything else. Adjuvants rated as a percentage of volume scale with carrier volume; adjuvants rated per acre do not."
+    }
+  ]
+}

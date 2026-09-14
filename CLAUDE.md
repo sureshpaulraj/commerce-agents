@@ -2,7 +2,7 @@
 
 For agents working in this repo, commerce-builder plugin users included. The public
 reference for commerce agents on Claude: a shopping agent and a merchant agent on three
-paths each, four vertical examples, and a Claude Code plugin.
+paths each, five vertical examples, and a Claude Code plugin.
 
 ## Layout
 
@@ -14,7 +14,7 @@ paths each, four vertical examples, and a Claude Code plugin.
 - `*/runtime-agent-sdk/`: each agent as `ClaudeAgentOptions`, with a console.
 - `*/managed-agents/`: the manifest directory (with the derived `system.md`) and the role's MCP server.
 - `examples/demo_common/` and `examples/web-shared/`: what the verticals' APIs and web apps share; `examples/` is the npm workspace.
-- `examples/<vertical>/`: `api/`, `data/`, `storefront-web/`, `merchant-web/`; ports 8000-8003, 3000-3003, 3100-3103.
+- `examples/<vertical>/`: `api/`, `data/`, `storefront-web/`, `merchant-web/`; ports 8000-8004, 3000-3004, 3100-3104.
 - `plugins/commerce-builder/`: six skills, four commands; `.claude-plugin/marketplace.json` points at it.
 - `docs/`: `safety.md`, `backends.md`, `deployment.md`. `scripts/`: install, demo, smoke, screenshots, check, deploy, verify.
 - `tests/`: the suites that span packages (both roles on all three paths); each package keeps its own `tests/`.
@@ -33,12 +33,14 @@ adds pytest and ruff); `scripts/install.sh` runs it.
 
 ## Fictional and original
 
-No real company, brand, product, or person appears: the only company is ACME and its
-lines; every brand, prompt, schema, and figure is invented here. Two exceptions:
-deployment and integration targets (the README's "MCP connectors" section; platform and
-SDK names in `docs/deployment.md`, the README's deploying section, and the platform tests),
-and CC0 category photos listed in the `IMAGE-CREDITS.md` beside them. When in doubt,
-redesign rather than rename.
+No real company, brand, product, or person appears: the companies are ACME and its lines,
+and Heartland Agronomy Supply and its lines in `examples/agronomy/`; every brand, prompt,
+schema, and figure is invented here. The agronomy example additionally invents every crop,
+pest, label rate, and restriction it shows, and none of it is agronomic advice. Two
+exceptions: deployment and integration targets (the README's "MCP connectors" section;
+platform and SDK names in `docs/deployment.md`, the README's deploying section, and the
+platform tests), and CC0 category photos listed in the `IMAGE-CREDITS.md` beside them. When
+in doubt, redesign rather than rename.
 
 ## Conventions
 

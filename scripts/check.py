@@ -29,7 +29,7 @@ sys.path.insert(0, str(REPO_ROOT))
 sys.path.insert(0, str(REPO_ROOT / "examples"))
 
 PROBLEMS: list[str] = []
-VERTICALS = ("retail", "travel", "telecom", "entertainment")
+VERTICALS = ("retail", "travel", "telecom", "entertainment", "agronomy")
 
 
 def problem(message: str) -> None:
@@ -287,7 +287,8 @@ def check_weekly_series(
                 break
 
 
-def retail_extra(data: Path, catalog_ids: set[str]) -> str:
+def stock_rows_extra(data: Path, catalog_ids: set[str]) -> str:
+    """Verticals whose only merchant-side extra is a flat inventory table."""
     inventory = load_json(data / "merchant_inventory.json")["inventory"]
     check_stock_rows(inventory, catalog_ids, "merchant_inventory.json")
     return f"{len(inventory)} inventory rows"
@@ -410,7 +411,7 @@ MERCHANT_FIXTURES = (
         "retail",
         "merchant",
         ("date", "sales", "orders", "traffic", "kids_room_sales"),
-        retail_extra,
+        stock_rows_extra,
     ),
     MerchantFixtures(
         "travel",
@@ -441,6 +442,12 @@ MERCHANT_FIXTURES = (
         "box-office",
         ("date", "sales", "orders", "tickets", "traffic", "amphitheater_sales"),
         entertainment_extra,
+    ),
+    MerchantFixtures(
+        "agronomy",
+        "branch",
+        ("date", "sales", "orders", "traffic", "fungicide_sales"),
+        stock_rows_extra,
     ),
 )
 

@@ -1,0 +1,71 @@
+{
+  "_comment": "Campaign windows are shifted forward by whole weeks at load time, relative to dates_anchored_to (demo_common.merchant_fixtures.load_campaigns), the same shift merchant_metrics.json gets. Author the dates as if dates_anchored_to were today.",
+  "dates_anchored_to": "2026-09-09",
+  "campaigns": [
+    {
+      "campaign_id": "C-301",
+      "name": "Fall prepay: residual program",
+      "status": "active",
+      "objective": "Book next season's preemergence residual volume before the fall prepay deadline",
+      "channel": "portal placements to grower accounts",
+      "budget": 4000.0,
+      "spend": 2410.0,
+      "revenue": 18600.0,
+      "currency": "USD",
+      "starts": "2026-08-24",
+      "ends": "2026-10-15"
+    },
+    {
+      "campaign_id": "C-302",
+      "name": "Sprayer cleanout and PPE restock",
+      "status": "active",
+      "objective": "Attach cleanout concentrate and handler PPE to end-of-season orders",
+      "channel": "email to accounts with a spray order this season",
+      "budget": 900.0,
+      "spend": 774.0,
+      "revenue": 1960.0,
+      "currency": "USD",
+      "starts": "2026-08-31",
+      "ends": "2026-09-30"
+    },
+    {
+      "campaign_id": "C-303",
+      "name": "Tar spot fungicide window",
+      "status": "ended",
+      "objective": "Move the VT to R2 fungicide program during the tar spot window",
+      "channel": "portal placements to grower accounts",
+      "budget": 3200.0,
+      "spend": 3200.0,
+      "revenue": 27400.0,
+      "currency": "USD",
+      "starts": "2026-06-29",
+      "ends": "2026-08-10"
+    },
+    {
+      "campaign_id": "C-304",
+      "name": "Micronutrient soil-test follow-up",
+      "status": "paused",
+      "objective": "Re-engage accounts whose soil tests flagged zinc or sulfur",
+      "channel": "agronomist call list",
+      "budget": 750.0,
+      "spend": 218.0,
+      "revenue": 640.0,
+      "currency": "USD",
+      "starts": "2026-08-10",
+      "ends": "2026-09-21"
+    },
+    {
+      "campaign_id": "C-305",
+      "name": "Seed treatment early book",
+      "status": "ended",
+      "objective": "Book soybean seed treatment volume ahead of the treating season",
+      "channel": "email to past buyers",
+      "budget": 600.0,
+      "spend": 600.0,
+      "revenue": null,
+      "currency": "USD",
+      "starts": "2026-07-06",
+      "ends": "2026-08-17"
+    }
+  ]
+}

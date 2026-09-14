@@ -1,0 +1,290 @@
+{
+  "default_stock": 40,
+  "default_threshold": 8,
+  "inventory": [
+    {
+      "product_id": "HA-1001",
+      "stock": 6,
+      "threshold": 24,
+      "sales_last_30d": 118,
+      "unit_cost": 214.0
+    },
+    {
+      "product_id": "HA-1002",
+      "stock": 31,
+      "threshold": 12,
+      "sales_last_30d": 44,
+      "unit_cost": 268.0
+    },
+    {
+      "product_id": "HA-1003",
+      "stock": 9,
+      "threshold": 18,
+      "sales_last_30d": 96,
+      "unit_cost": 182.0
+    },
+    {
+      "product_id": "HA-1004",
+      "stock": 52,
+      "threshold": 16,
+      "sales_last_30d": 134,
+      "unit_cost": 141.0
+    },
+    {
+      "product_id": "HA-1005",
+      "stock": 27,
+      "threshold": 8,
+      "sales_last_30d": 21,
+      "unit_cost": 119.0,
+      "content_quality": "needs_work",
+      "missing_attributes": [
+        "rotation restriction to corn",
+        "adjuvant requirement"
+      ]
+    },
+    {
+      "product_id": "HA-1006",
+      "stock": 64,
+      "threshold": 8,
+      "sales_last_30d": 3,
+      "unit_cost": 97.0,
+      "slow_mover": true,
+      "status": "paused"
+    },
+    {
+      "product_id": "HA-1201",
+      "stock": 18,
+      "threshold": 20,
+      "sales_last_30d": 162,
+      "unit_cost": 306.0
+    },
+    {
+      "product_id": "HA-1202",
+      "stock": 44,
+      "threshold": 12,
+      "sales_last_30d": 58,
+      "unit_cost": 196.0
+    },
+    {
+      "product_id": "HA-1203",
+      "stock": 0,
+      "threshold": 14,
+      "sales_last_30d": 87,
+      "unit_cost": 341.0
+    },
+    {
+      "product_id": "HA-1401",
+      "stock": 36,
+      "threshold": 10,
+      "sales_last_30d": 39,
+      "unit_cost": 128.0
+    },
+    {
+      "product_id": "HA-1402",
+      "stock": 24,
+      "threshold": 8,
+      "sales_last_30d": 11,
+      "unit_cost": 238.0
+    },
+    {
+      "product_id": "HA-1403",
+      "stock": 15,
+      "threshold": 6,
+      "sales_last_30d": 18,
+      "unit_cost": 157.0
+    },
+    {
+      "product_id": "HA-1601",
+      "stock": 74,
+      "threshold": 20,
+      "sales_last_30d": 211,
+      "unit_cost": 51.0
+    },
+    {
+      "product_id": "HA-1602",
+      "stock": 41,
+      "threshold": 10,
+      "sales_last_30d": 46,
+      "unit_cost": 62.0
+    },
+    {
+      "product_id": "HA-1603",
+      "stock": 3,
+      "threshold": 30,
+      "sales_last_30d": 188,
+      "unit_cost": 26.0,
+      "content_quality": "needs_work",
+      "missing_attributes": [
+        "mix order stated in the listing",
+        "rate per 100 gallons of carrier"
+      ]
+    },
+    {
+      "product_id": "HA-1604",
+      "stock": 29,
+      "threshold": 10,
+      "sales_last_30d": 33,
+      "unit_cost": 57.0
+    },
+    {
+      "product_id": "HA-1801",
+      "stock": 21,
+      "threshold": 6,
+      "sales_last_30d": 8,
+      "unit_cost": 259.0
+    },
+    {
+      "product_id": "HA-1802",
+      "stock": 12,
+      "threshold": 6,
+      "sales_last_30d": 5,
+      "unit_cost": 84.0,
+      "return_rate_pct": 14.0,
+      "content_quality": "needs_work",
+      "missing_attributes": [
+        "storage temperature stated on the listing"
+      ]
+    },
+    {
+      "product_id": "HA-2001",
+      "stock": 38,
+      "threshold": 8,
+      "sales_last_30d": 26,
+      "unit_cost": 79.0
+    },
+    {
+      "product_id": "HA-2002",
+      "stock": 47,
+      "threshold": 8,
+      "sales_last_30d": 14,
+      "unit_cost": 58.0
+    },
+    {
+      "product_id": "HA-2003",
+      "stock": 16,
+      "threshold": 6,
+      "sales_last_30d": 22,
+      "unit_cost": 49.0
+    },
+    {
+      "product_id": "HA-2201-02",
+      "stock": 22,
+      "threshold": 6,
+      "sales_last_30d": 17,
+      "unit_cost": 61.0
+    },
+    {
+      "product_id": "HA-2201-03",
+      "stock": 34,
+      "threshold": 6,
+      "sales_last_30d": 41,
+      "unit_cost": 65.0
+    },
+    {
+      "product_id": "HA-2201-04",
+      "stock": 19,
+      "threshold": 6,
+      "sales_last_30d": 23,
+      "unit_cost": 69.0
+    },
+    {
+      "product_id": "HA-2201-05",
+      "stock": 0,
+      "threshold": 6,
+      "sales_last_30d": 9,
+      "unit_cost": 73.0
+    },
+    {
+      "product_id": "HA-2202-M",
+      "stock": 58,
+      "threshold": 12,
+      "sales_last_30d": 44,
+      "unit_cost": 16.5
+    },
+    {
+      "product_id": "HA-2202-L",
+      "stock": 41,
+      "threshold": 12,
+      "sales_last_30d": 96,
+      "unit_cost": 16.5
+    },
+    {
+      "product_id": "HA-2202-XL",
+      "stock": 5,
+      "threshold": 12,
+      "sales_last_30d": 71,
+      "unit_cost": 16.5
+    },
+    {
+      "product_id": "HA-2202-2XL",
+      "stock": 0,
+      "threshold": 8,
+      "sales_last_30d": 28,
+      "unit_cost": 17.5
+    },
+    {
+      "product_id": "HA-2203",
+      "stock": 63,
+      "threshold": 10,
+      "sales_last_30d": 52,
+      "unit_cost": 33.0
+    },
+    {
+      "product_id": "HA-2204",
+      "stock": 48,
+      "threshold": 8,
+      "sales_last_30d": 19,
+      "unit_cost": 38.0
+    },
+    {
+      "product_id": "HA-2205",
+      "stock": 37,
+      "threshold": 8,
+      "sales_last_30d": 24,
+      "unit_cost": 27.0
+    },
+    {
+      "product_id": "HA-2206-M",
+      "stock": 26,
+      "threshold": 6,
+      "sales_last_30d": 12,
+      "unit_cost": 42.0
+    },
+    {
+      "product_id": "HA-2206-L",
+      "stock": 31,
+      "threshold": 6,
+      "sales_last_30d": 18,
+      "unit_cost": 42.0
+    },
+    {
+      "product_id": "HA-2206-XL",
+      "stock": 28,
+      "threshold": 6,
+      "sales_last_30d": 15,
+      "unit_cost": 44.0
+    },
+    {
+      "product_id": "HA-2206-2XL",
+      "stock": 24,
+      "threshold": 6,
+      "sales_last_30d": 9,
+      "unit_cost": 46.0
+    },
+    {
+      "product_id": "HA-2207",
+      "stock": 33,
+      "threshold": 6,
+      "sales_last_30d": 31,
+      "unit_cost": 51.0
+    },
+    {
+      "product_id": "HA-2208",
+      "stock": 57,
+      "threshold": 6,
+      "sales_last_30d": 3,
+      "unit_cost": 92.0,
+      "slow_mover": true
+    }
+  ]
+}

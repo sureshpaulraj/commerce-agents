@@ -1,0 +1,7 @@
+{
+  "demo-user": [
+    {"key": "resistance_history", "value": "confirmed Group 2 resistant waterhemp on the east half of the home farm — wants two effective sites of action in every pass", "category": "constraint", "updated_at": "2026-07-14T16:40:00Z"},
+    {"key": "carrier_volume", "value": "runs 15 gallons per acre on the self-propelled rig and does not want recommendations that assume 20", "category": "context", "updated_at": "2026-08-02T19:12:00Z"},
+    {"key": "packaging_preference", "value": "takes delivery in jugs rather than totes for anything except sulfur — no bulk handling equipment at the home shed", "category": "preference", "updated_at": "2026-08-19T13:05:00Z"}
+  ]
+}

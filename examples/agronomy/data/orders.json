@@ -1,0 +1,129 @@
+{
+  "_comment": "In-flight orders (processing/shipped/delayed) are re-dated at load time relative to dates_anchored_to (demo_common.storefront_fixtures.redate_in_flight_orders), so estimates always read current. Author their dates as if dates_anchored_to were today.",
+  "dates_anchored_to": "2026-09-09",
+  "orders": [
+    {
+      "order_id": "HA-40218",
+      "user_id": "demo-user",
+      "status": "shipped",
+      "placed_at": "2026-09-02T14:32:00Z",
+      "items": [
+        {
+          "product_id": "HA-1201",
+          "title": "Canopy Shield SC Fungicide",
+          "quantity": 8,
+          "price": 412.0
+        },
+        {
+          "product_id": "HA-1601",
+          "title": "Sticktite NIS Nonionic Surfactant",
+          "quantity": 2,
+          "price": 78.0
+        }
+      ],
+      "total": 3452.0,
+      "estimated_delivery": "2026-09-10",
+      "tracking_url": "https://track.example.com/HA-40218"
+    },
+    {
+      "order_id": "HA-40094",
+      "user_id": "demo-user",
+      "status": "delayed",
+      "placed_at": "2026-08-26T09:05:00Z",
+      "items": [
+        {
+          "product_id": "HA-2003",
+          "title": "SulfurPlus 12-0-0-26S Liquid",
+          "quantity": 2,
+          "price": 74.0
+        }
+      ],
+      "total": 148.0,
+      "estimated_delivery": "2026-09-14 (updated after a freight reschedule; the original 2026-09-07 estimate was missed)",
+      "tracking_url": "https://track.example.com/HA-40094"
+    },
+    {
+      "order_id": "HA-39871",
+      "user_id": "demo-user",
+      "status": "delivered",
+      "placed_at": "2026-05-18T19:47:00Z",
+      "items": [
+        {
+          "product_id": "HA-1001",
+          "title": "Vantage Pro SC Residual Herbicide",
+          "quantity": 12,
+          "price": 289.0
+        },
+        {
+          "product_id": "HA-1003",
+          "title": "Rowguard 4L Soybean Residual",
+          "quantity": 10,
+          "price": 246.0
+        }
+      ],
+      "total": 5928.0,
+      "estimated_delivery": "2026-05-22",
+      "tracking_url": "https://track.example.com/HA-39871"
+    },
+    {
+      "order_id": "HA-39644",
+      "user_id": "demo-user",
+      "status": "delivered",
+      "placed_at": "2026-06-11T11:20:00Z",
+      "items": [
+        {
+          "product_id": "HA-1004",
+          "title": "Sweepline SG Postemergence Herbicide",
+          "quantity": 6,
+          "price": 198.0
+        },
+        {
+          "product_id": "HA-1603",
+          "title": "AMS Boost Water Conditioner",
+          "quantity": 10,
+          "price": 42.0
+        },
+        {
+          "product_id": "HA-2202-L",
+          "title": "Chemical-Resistant Nitrile Gloves",
+          "quantity": 2,
+          "price": 28.0,
+          "option_values": {
+            "size": "L"
+          },
+          "variant_of": "HA-2202"
+        }
+      ],
+      "total": 1664.0,
+      "estimated_delivery": "2026-06-15",
+      "tracking_url": "https://track.example.com/HA-39644"
+    },
+    {
+      "order_id": "HA-40301",
+      "user_id": "demo-user-2",
+      "status": "processing",
+      "placed_at": "2026-09-07T08:12:00Z",
+      "items": [
+        {
+          "product_id": "HA-2207",
+          "title": "Sprayer Calibration Kit",
+          "quantity": 1,
+          "price": 82.0
+        },
+        {
+          "product_id": "HA-2201-03",
+          "title": "AirSpread AIXR Spray Nozzle Set",
+          "quantity": 1,
+          "price": 102.0,
+          "option_values": {
+            "orifice": "110-03"
+          },
+          "variant_of": "HA-2201"
+        }
+      ],
+      "total": 184.0,
+      "estimated_delivery": "2026-09-13",
+      "tracking_url": "https://track.example.com/HA-40301"
+    }
+  ]
+}

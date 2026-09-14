@@ -1,0 +1,27 @@
+{
+  "users": [
+    {
+      "user_id": "demo-user",
+      "display_name": "Dale",
+      "loyalty_tier": "Heartland Grower Program, Tier 2",
+      "default_location": "Clearwater County branch",
+      "preferences": {
+        "operation": "2,400 acres, corn and soybean on a 50/50 rotation",
+        "equipment": "self-propelled sprayer, 120 ft boom, runs 15 GPA",
+        "weed_pressure": "heavy waterhemp history on the east half, some Group 2 resistance confirmed",
+        "buying": "prepays in the fall, prefers jugs over totes for anything but sulfur",
+        "licence": "certified applicator, current through the season"
+      }
+    },
+    {
+      "user_id": "demo-user-2",
+      "display_name": "Marisol",
+      "loyalty_tier": "Guest",
+      "default_location": "Clearwater County branch",
+      "preferences": {
+        "operation": "640 acres, first season managing the spray program herself",
+        "buying": "price sensitive, wants the fewest products that will do the job"
+      }
+    }
+  ]
+}
