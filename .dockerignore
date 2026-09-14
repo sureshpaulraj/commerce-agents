@@ -1,0 +1,30 @@
+# Copyright 2026 Anthropic PBC
+# SPDX-License-Identifier: Apache-2.0
+#
+# What never belongs in a build context: version control, virtualenvs, installed
+# dependencies, build output, caches, and any local credential file. The paths under
+# `examples/` are spelled out as well as globbed, because the packer that uploads a
+# build context to a remote builder does not always honour a leading `**/`.
+
+.git/
+.github/
+.venv/
+venv/
+**/node_modules/
+**/.next/
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+**/.ruff_cache/
+**/*.egg-info/
+.env
+**/.env
+**/.memory-store.json
+**/.memory-seeded.json
+
+examples/node_modules/
+examples/web-shared/node_modules/
+examples/*/storefront-web/node_modules/
+examples/*/merchant-web/node_modules/
+examples/*/storefront-web/.next/
+examples/*/merchant-web/.next/

@@ -1,0 +1,22 @@
+# Copyright 2026 Anthropic PBC
+# SPDX-License-Identifier: Apache-2.0
+#
+# The web images build from this directory, so the context is pruned here as well as at
+# the repository root. The paths are spelled out as well as globbed, because the packer
+# that uploads a build context to a remote builder does not always honour a leading `**/`.
+
+**/node_modules/
+**/.next/
+**/__pycache__/
+**/*.pyc
+.env
+**/.env
+**/.memory-store.json
+**/.memory-seeded.json
+
+node_modules/
+web-shared/node_modules/
+*/storefront-web/node_modules/
+*/merchant-web/node_modules/
+*/storefront-web/.next/
+*/merchant-web/.next/
