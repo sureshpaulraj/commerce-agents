@@ -24,10 +24,10 @@ import type { Product } from "@/lib/types";
 import ProductTile from "../ProductTile";
 
 const STARTERS: Starter[] = [
-  { icon: "search", prompt: "A tent for a first family camping trip, under $250" },
-  { icon: "home", prompt: "Set up a home office in a small spare room for about $800" },
-  { icon: "tag", prompt: "Drip or espresso for busy weekday mornings?" },
-  { icon: "edit", prompt: "Remember: small apartment, no outdoor storage, and a golden retriever" },
+  { icon: "search", prompt: "Group 2 stopped holding waterhemp on continuous corn — what now?" },
+  { icon: "home", prompt: "Build me a preemergence tank mix for 640 acres at 15 GPA" },
+  { icon: "tag", prompt: "What order does a preemergence load go into the tank?" },
+  { icon: "edit", prompt: "Remember: 15 gallons an acre, jugs not totes, no bulk handling at the shed" },
 ];
 
 /** What the store is featuring: labelled bestseller or new, photographed ones first. */
@@ -39,9 +39,9 @@ function featured(catalog: Record<string, Product>): Product[] {
 }
 
 function Brief({ orders }: { orders: Order[] | null }) {
-  if (!orders) return <>Ask about a product, a project, an order, or a return.</>;
+  if (!orders) return <>Ask about a product, a pass, an order, or a return.</>;
   const open = upcoming(orders);
-  if (!open.length) return <>Nothing on the way right now. Ask about a product, a project, or a return.</>;
+  if (!open.length) return <>Nothing on the way right now. Ask about a product, a pass, or a return.</>;
   const late = open.filter((order) => order.status === "delayed");
   const next = estimateOf(open.find((order) => order.status !== "delayed") ?? open[0])?.date;
   return (

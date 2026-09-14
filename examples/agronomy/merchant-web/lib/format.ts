@@ -8,17 +8,14 @@ import { ORDER_STATUS } from "./kinds";
 import type { RecentOrder } from "./types";
 
 const CATEGORY_LABELS: Record<string, string> = {
-  "beauty-personal-care": "Beauty & personal care",
-  fitness: "Fitness",
-  "furniture-bedroom": "Furniture & bedroom",
-  grocery: "Grocery",
-  "home-kitchen": "Home & kitchen",
-  "kids-room": "Kids' room",
-  "office-electronics": "Office & electronics",
-  "outdoor-camping": "Outdoor & camping",
-  "pet-supplies": "Pet supplies",
-  "toys-games": "Toys & games",
-  travel: "Travel",
+  adjuvants: "Adjuvants",
+  "application-equipment": "Application equipment",
+  fungicides: "Fungicides",
+  herbicides: "Herbicides",
+  insecticides: "Insecticides",
+  micronutrients: "Micronutrients",
+  "safety-ppe": "Safety & PPE",
+  "seed-treatments": "Seed treatments",
 };
 
 export function formatCategoryLabel(slug: string): string {

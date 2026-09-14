@@ -24,40 +24,29 @@ function hash(text: string): number {
 
 /** First match wins; order runs specific to general. */
 const KEYWORD_GLYPHS: [string, string][] = [
-  ["salmon", "🐟"], ["stir-fry", "🍜"], ["pasta", "🍝"], ["rigatoni", "🍝"],
-  ["sauce", "🍅"], ["beef", "🥩"], ["salad", "🥗"], ["brioche", "🥖"],
-  ["roll", "🥖"], ["veggie", "🥦"], ["brownie", "🍫"], ["marinade", "🍋"],
-  ["coffee", "☕"], ["skillet", "🍳"], ["knife", "🔪"], ["blender", "🥤"],
-  ["bed frame", "🛏️"], ["mattress", "🛏️"], ["duvet", "🛌"], ["pillow", "🛌"],
-  ["cosmic", "🚀"], ["rocket", "🚀"], ["starlit", "✨"], ["solar system", "🪐"], ["space", "🚀"],
-  ["decal", "🖼️"], ["poster", "🖼️"], ["rug", "🟫"], ["curtain", "🪟"],
-  ["night light", "💡"], ["projector", "✨"], ["lamp", "💡"], ["plush", "🧸"],
-  ["bedding", "🐋"], ["storage bin", "🧺"], ["ocean", "🐋"], ["tide", "🌊"],
-  ["palette", "💄"], ["mascara", "💄"], ["moisturizer", "🧴"], ["serum", "🧴"],
-  ["tent", "⛺"], ["sleeping bag", "🛌"], ["stove", "🔥"], ["lantern", "🏮"],
-  ["headphone", "🎧"], ["monitor", "🖥️"], ["keyboard", "⌨️"], ["mouse", "🖱️"],
-  ["chair", "🪑"], ["desk", "🖥️"], ["stand", "💻"], ["webcam", "📷"],
-  ["dumbbell", "🏋️"], ["yoga", "🧘"], ["kettlebell", "🏋️"], ["resistance", "💪"],
-  ["spinner", "🧳"], ["carry-on", "🧳"], ["packing", "🎒"], ["adapter", "🔌"],
-  ["tracker", "📍"], ["toiletry", "🧴"],
-  ["dog", "🐕"], ["cat", "🐈"], ["leash", "🦮"], ["pet", "🐾"],
-  ["brick", "🧱"], ["building", "🧱"], ["art studio", "🎨"], ["figure", "🦖"],
-  ["book", "📚"], ["game", "🎲"], ["puzzle", "🧩"],
+  ["surfactant", "💧"], ["water conditioner", "💧"], ["ams", "💧"],
+  ["drift", "🌬️"], ["defoam", "🫧"], ["crop oil", "🛢️"], ["adjuvant", "💧"],
+  ["herbicide", "🌾"], ["residual", "🌾"], ["preemergence", "🌱"], ["burndown", "🔥"],
+  ["fungicide", "🍄"], ["insecticide", "🐛"], ["beetle", "🪲"], ["rootworm", "🪲"],
+  ["seed treatment", "🌰"], ["inoculant", "🌰"], ["colorant", "🎨"],
+  ["zinc", "🧪"], ["boron", "🧪"], ["manganese", "🧪"], ["micronutrient", "🧪"],
+  ["nozzle", "🚿"], ["tip", "🚿"], ["screen", "🧽"], ["cleanout", "🧽"],
+  ["tank", "🛢️"], ["pump", "⚙️"], ["gauge", "📏"], ["strainer", "🧽"],
+  ["glove", "🧤"], ["coverall", "🥼"], ["apron", "🥼"], ["respirator", "😷"],
+  ["face shield", "🥽"], ["goggle", "🥽"], ["boot", "🥾"],
+  ["spill kit", "🧰"], ["eyewash", "🚰"], ["label holder", "📋"],
 ];
 
 /** Rotated by product id so a same-category row varies. */
 const CATEGORY_GLYPHS: Record<string, string[]> = {
-  "home-kitchen": ["🍳", "🫖", "🥘", "🔪"],
-  "office-electronics": ["🖥️", "⌨️", "🎧", "🖱️"],
-  "outdoor-camping": ["⛺", "🔦", "🥾", "🏕️"],
-  fitness: ["🏋️", "🧘", "💪", "🤸"],
-  "toys-games": ["🦖", "🧩", "🎲", "🧸"],
-  "pet-supplies": ["🐾", "🐕", "🐈", "🦴"],
-  "beauty-personal-care": ["🌿", "🧴", "💄", "🪞"],
-  travel: ["🧳", "🎒", "🌍", "✈️"],
-  "kids-room": ["🦕", "🦖", "🌋", "🧸"],
-  "furniture-bedroom": ["🛏️", "🛌", "🪑", "🕯️"],
-  grocery: ["🥕", "🍎", "🧀", "🥫"],
+  herbicides: ["🌾", "🌱", "🚜", "🧴"],
+  fungicides: ["🍄", "🌽", "🧴", "🌾"],
+  insecticides: ["🐛", "🪲", "🦗", "🧴"],
+  adjuvants: ["💧", "🫧", "🛢️", "🌬️"],
+  "seed-treatments": ["🌰", "🌱", "🎨", "🧫"],
+  micronutrients: ["🧪", "🌿", "🧫", "🪴"],
+  "application-equipment": ["🚿", "⚙️", "🧽", "🛢️"],
+  "safety-ppe": ["🧤", "🥽", "🥼", "🥾"],
 };
 
 export function productGlyph(product: { title?: string; category?: string | null; product_id?: string }): string {
@@ -65,7 +54,7 @@ export function productGlyph(product: { title?: string; category?: string | null
   for (const [keyword, glyph] of KEYWORD_GLYPHS) {
     if (title.includes(keyword)) return glyph;
   }
-  const pool = CATEGORY_GLYPHS[product.category ?? ""] ?? ["🛍️"];
+  const pool = CATEGORY_GLYPHS[product.category ?? ""] ?? ["🧴"];
   return pool[hash(product.product_id ?? title) % pool.length];
 }
 
