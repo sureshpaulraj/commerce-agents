@@ -154,6 +154,14 @@ The example APIs reach it through `COMMERCE_DEMO_PROVIDER=foundry-openai` with
 `FOUNDRY_RESOURCE` and `FOUNDRY_DEPLOYMENT`; `demo_model_client()` in
 `examples/demo_common/host.py` is the one place that reads them.
 
+Foundry offers two OpenAI surfaces, and which one a deployment accepts is a property of
+the deployment. The adapter sends to `/v1/responses` by default, because a reasoning model
+refuses function tools on `/v1/chat/completions` and every turn in both roles carries
+tools. `FOUNDRY_SURFACE=chat` picks the older surface for a deployment that offers nothing
+else, and `FOUNDRY_REASONING_EFFORT` sets an effort where the deployment's own default is
+not what you want. A `FOUNDRY_BASE_URL` naming one of the two paths selects that surface
+on its own.
+
 ## Agent SDK runtimes: the CLI environment
 
 The SDK runtimes construct no HTTP client. `claude-agent-sdk` starts the Claude Code CLI,

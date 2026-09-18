@@ -15,6 +15,7 @@ from commerce_common.foundry_openai import (
     AsyncFoundryOpenAI,
     _Accumulating,
     _messages,
+    _responses_usage,
     _tool_choice,
     _tools,
     _usage,
@@ -102,27 +103,107 @@ def test_cached_prompt_tokens_are_reported_as_cache_reads() -> None:
     assert (usage.input_tokens, usage.output_tokens, usage.cache_read_input_tokens) == (100, 7, 80)
 
 
-def test_translate_drops_caching_and_thinking_and_forces_no_reasoning() -> None:
-    client = AsyncFoundryOpenAI(resource="acct", deployment="gpt-6-astra")
-    body = client.translate(
+def test_translate_drops_caching_and_thinking_and_leaves_reasoning_alone() -> None:
+    client = AsyncFoundryOpenAI(resource="acct", deployment="gpt-6-astra", surface="chat")
+    request = {
+        "model": "claude-sonnet-5",
+        "max_tokens": 900,
+        "system": [{"type": "text", "text": "S", "cache_control": {"type": "ephemeral"}}],
+        "tools": [{"name": "t", "description": "", "input_schema": {"type": "object"}}],
+        "tool_choice": {"type": "auto"},
+        "messages": [{"role": "user", "content": "hi"}],
+        "thinking": {"type": "adaptive"},
+        "output_config": {"effort": "high"},
+    }
+    body = client.translate(request, stream=True)
+    # The deployment is what Foundry addresses, not the configured model id.
+    assert body["model"] == "gpt-6-astra"
+    assert body["max_completion_tokens"] == 900
+    # Unset, so the deployment's own default stands rather than a value it may refuse.
+    assert "reasoning_effort" not in body
+    assert "thinking" not in body and "output_config" not in body
+    assert "cache_control" not in json.dumps(body)
+    asked = AsyncFoundryOpenAI(resource="acct", surface="chat", reasoning_effort="low")
+    assert asked.translate(request, stream=True)["reasoning_effort"] == "low"
+
+
+def test_the_surface_decides_the_path_and_an_explicit_url_decides_the_surface() -> None:
+    # A reasoning model carries tools only on the Responses surface, so that is the default.
+    assert AsyncFoundryOpenAI(resource="acct").url.endswith("/v1/responses")
+    assert AsyncFoundryOpenAI(resource="acct", surface="chat").url.endswith("/v1/chat/completions")
+    given = "https://host.example/openai/v1/chat/completions"
+    assert AsyncFoundryOpenAI(base_url=given).surface == "chat"
+    assert AsyncFoundryOpenAI(base_url=given).url == given
+    # An explicit choice still wins over what the URL implies.
+    assert AsyncFoundryOpenAI(base_url=given, surface="responses").surface == "responses"
+
+
+def test_translate_responses_carries_the_turn_the_responses_surface_expects() -> None:
+    client = AsyncFoundryOpenAI(resource="acct", deployment="gpt-6-astra", reasoning_effort="low")
+    body = client.translate_responses(
         {
             "model": "claude-sonnet-5",
             "max_tokens": 900,
             "system": [{"type": "text", "text": "S", "cache_control": {"type": "ephemeral"}}],
-            "tools": [{"name": "t", "description": "", "input_schema": {"type": "object"}}],
-            "tool_choice": {"type": "auto"},
-            "messages": [{"role": "user", "content": "hi"}],
+            "tools": [{"name": "t", "description": "d", "input_schema": {"type": "object"}}],
+            "tool_choice": {"type": "tool", "name": "t"},
             "thinking": {"type": "adaptive"},
-            "output_config": {"effort": "high"},
+            "messages": [
+                {"role": "user", "content": "hi"},
+                {
+                    "role": "assistant",
+                    "content": [
+                        {"type": "tool_use", "id": "call_1", "name": "t", "input": {"q": 1}}
+                    ],
+                },
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "tool_result", "tool_use_id": "call_1", "content": "done"}
+                    ],
+                },
+            ],
         },
         stream=True,
     )
-    # The deployment is what Foundry addresses, not the configured model id.
     assert body["model"] == "gpt-6-astra"
-    assert body["max_completion_tokens"] == 900
-    assert body["reasoning_effort"] == "none"
-    assert "thinking" not in body and "output_config" not in body
+    assert body["max_output_tokens"] == 900
+    assert body["instructions"] == "S"
+    assert body["reasoning"] == {"effort": "low"}
+    # The conversation is sent whole every turn, so nothing is kept server-side.
+    assert body["store"] is False
+    # A function tool is flat here, where the chat surface nests it.
+    assert body["tools"] == [
+        {"type": "function", "name": "t", "description": "d", "parameters": {"type": "object"}}
+    ]
+    assert body["tool_choice"] == {"type": "function", "name": "t"}
+    # A call and its result are items matched by call_id, not roles.
+    assert body["input"] == [
+        {"role": "user", "content": "hi"},
+        {"type": "function_call", "call_id": "call_1", "name": "t", "arguments": '{"q": 1}'},
+        {"type": "function_call_output", "call_id": "call_1", "output": "done"},
+    ]
     assert "cache_control" not in json.dumps(body)
+
+
+def test_responses_usage_and_stop_are_read_from_the_turns_own_shape() -> None:
+    usage = _responses_usage(
+        {"input_tokens": 100, "output_tokens": 7, "input_tokens_details": {"cached_tokens": 80}}
+    )
+    assert (usage.input_tokens, usage.output_tokens, usage.cache_read_input_tokens) == (100, 7, 80)
+    # The Responses surface reports no finish reason, so the turn's shape names it.
+    ended = _Accumulating("gpt-6-astra")
+    ended.start_text()
+    ended.settle_stop(False)
+    assert ended.message().stop_reason == "end_turn"
+    called = _Accumulating("gpt-6-astra")
+    called.start_tool(0, "call_1", "t")
+    called.settle_stop(False)
+    assert called.message().stop_reason == "tool_use"
+    cut = _Accumulating("gpt-6-astra")
+    cut.start_tool(0, "call_1", "t")
+    cut.settle_stop(True)
+    assert cut.message().stop_reason == "max_tokens"
 
 
 def _feed(events: list[Any]) -> StreamedRound:

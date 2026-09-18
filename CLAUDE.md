@@ -8,7 +8,9 @@ paths each, five vertical examples, and a Claude Code plugin.
 
 - `commerce-common/commerce_common/`: what both roles share; its `__init__` lists the modules.
   `foundry_openai` is the odd one out: a platform adapter, not a mechanism, filling the
-  `client=` seam for a Foundry tenant with no Anthropic deployment (needs `azure-identity`).
+  `client=` seam for a Foundry tenant with no Anthropic deployment (needs `azure-identity`);
+  it sends on Foundry's `responses` surface by default because a reasoning model refuses
+  function tools on `chat/completions`.
 - `shopping-agent/core/shopping_agent/`: types, `StorefrontBackend`, config, prompt, `tools/`, gates, enrichment, executor.
 - `merchant-agent/core/merchant_agent/`: the merchant equivalents, plus `changes.py` and `analysis.py`.
 - `*/skills/`: five flows per role, one `SKILL.md` each.
@@ -16,6 +18,10 @@ paths each, five vertical examples, and a Claude Code plugin.
 - `*/runtime-agent-sdk/`: each agent as `ClaudeAgentOptions`, with a console.
 - `*/managed-agents/`: the manifest directory (with the derived `system.md`) and the role's MCP server.
 - `examples/demo_common/` and `examples/web-shared/`: what the verticals' APIs and web apps share; `examples/` is the npm workspace.
+  A deployment's two additions live here too, both inert until their variables are set:
+  the HTTP Basic gate in `host.py` and `web-shared/gateway.ts`, and that gateway's
+  same-origin API proxy, which is how a browser reaches a gated API it cannot send
+  credentials to.
 - `examples/<vertical>/`: `api/`, `data/`, `storefront-web/`, `merchant-web/`; ports 8000-8004, 3000-3004, 3100-3104.
 - `plugins/commerce-builder/`: six skills, four commands; `.claude-plugin/marketplace.json` points at it.
 - `docs/`: `safety.md`, `backends.md`, `deployment.md`. `scripts/`: install, demo, smoke, screenshots, check, deploy, verify.
