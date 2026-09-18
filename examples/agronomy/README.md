@@ -43,7 +43,23 @@ FOUNDRY_DEPLOYMENT=your-deployment     # e.g. a GPT deployment
 
 The application plan is computed in `api/rates.py`, so it does not change with the model;
 what changes is who chooses the products and the rate. `docs/deployment.md` covers the
-trade-offs and every other platform.
+trade-offs, the two OpenAI surfaces, and every other platform.
+
+## Reaching it from somewhere other than this machine
+
+The demo binds to loopback and expects to be alone there. Two variables, both unset by
+default, are what a deployment adds:
+
+```bash
+DEMO_BASIC_AUTH=user:password          # HTTP Basic in front of the API and both web apps
+DEMO_API_ORIGIN=https://<api-host>     # where a web app forwards its own /api calls
+```
+
+A browser cannot authenticate to a second origin with `fetch`, so a deployed web app
+serves `/api` itself and forwards from the server side, attaching the credentials where
+the browser cannot read them. That needs the app built with an empty `NEXT_PUBLIC_API_URL`
+so it addresses its own origin. `web-shared/gateway.ts` holds both halves, and
+`deploy/web.Dockerfile` shows the build.
 
 ## Try
 

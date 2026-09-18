@@ -8,8 +8,10 @@ response one chat turn streams."""
 from __future__ import annotations
 
 import asyncio
+import base64
 import logging
 import os
+import secrets
 from collections.abc import AsyncIterator, Awaitable, Callable, Coroutine, Sequence
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -21,7 +23,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from starlette.background import BackgroundTask
+from starlette.datastructures import Headers
 from starlette.middleware.trustedhost import TrustedHostMiddleware
+from starlette.responses import Response
 
 from commerce_common.streaming import AgentEvent, to_sse
 from commerce_common.turn import session_tag
@@ -141,13 +145,42 @@ def _lifespan(on_startup: Sequence[Callable[[], Awaitable[None]]]):
     return lifespan
 
 
+class _BasicAuth:
+    """HTTP Basic over the whole app, for a deployment reachable from outside loopback.
+
+    Plain ASGI rather than ``BaseHTTPMiddleware`` so a streamed turn is passed through
+    untouched. A preflight carries no credentials by definition and is left to CORS.
+    """
+
+    def __init__(self, app: Any, credentials: str) -> None:
+        self.app = app
+        encoded = base64.b64encode(credentials.encode()).decode()
+        self.expected = f"Basic {encoded}"
+
+    async def __call__(self, scope: Any, receive: Any, send: Any) -> None:
+        if scope["type"] != "http" or scope.get("method") == "OPTIONS":
+            await self.app(scope, receive, send)
+            return
+        offered = Headers(scope=scope).get("authorization", "")
+        if not secrets.compare_digest(offered, self.expected):
+            unauthorized = Response(
+                status_code=401,
+                headers={"WWW-Authenticate": 'Basic realm="Heartland demo", charset="UTF-8"'},
+            )
+            await unauthorized(scope, receive, send)
+            return
+        await self.app(scope, receive, send)
+
+
 def build_app(title: str, on_startup: Sequence[Callable[[], Awaitable[None]]] = ()) -> FastAPI:
     """A FastAPI app that answers only to loopback host names (plus ``DEMO_ALLOWED_HOSTS``,
     for a deployment that puts its own authentication in front) and to any localhost
     origin, plus the exact origins in ``DEMO_ALLOWED_ORIGINS`` for a deployment whose web
     app is served from another host. Rejecting other Host headers stops DNS-rebinding,
-    which CORS does not. Logs go to stderr at ``DEMO_LOG_LEVEL``: ``INFO`` is a line per
-    model call, ``DEBUG`` adds the bodies."""
+    which CORS does not. ``DEMO_BASIC_AUTH``, as ``user:password``, puts HTTP Basic in
+    front of every route; leaving it unset is what a loopback demo wants. Logs go to
+    stderr at ``DEMO_LOG_LEVEL``: ``INFO`` is a line per model call, ``DEBUG`` adds the
+    bodies."""
     logging.basicConfig(
         level=os.environ.get("DEMO_LOG_LEVEL", "INFO").upper(),
         format="%(levelname)s %(name)s: %(message)s",
@@ -167,6 +200,10 @@ def build_app(title: str, on_startup: Sequence[Callable[[], Awaitable[None]]] = 
         TrustedHostMiddleware,
         allowed_hosts=["localhost", "127.0.0.1", *(host for host in extra_hosts if host)],
     )
+    # Added before CORS so CORS stays outermost and a preflight still answers.
+    credentials = os.environ.get("DEMO_BASIC_AUTH", "").strip()
+    if credentials:
+        app.add_middleware(_BasicAuth, credentials=credentials)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=[origin for origin in extra_origins if origin],

@@ -27,6 +27,10 @@
 #
 # NEXT_PUBLIC_API_URL is inlined by `next build`, so the API's address is a build
 # argument rather than a runtime variable: the browser, not the server, calls the API.
+# Build it empty to address this app's own origin instead, which is what a deployment
+# that puts the HTTP Basic gate in front wants: the browser then calls `/api` here and
+# `app/api/[...path]` forwards to `DEMO_API_ORIGIN` with the API's credentials attached,
+# which a cross-origin `fetch` could not do. See `examples/web-shared/gateway.ts`.
 
 FROM node:22-slim
 
