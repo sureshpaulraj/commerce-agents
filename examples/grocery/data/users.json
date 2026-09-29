@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "user_id": "demo-user",
+      "display_name": "Jordan",
+      "loyalty_tier": "Riverbend Rewards Gold",
+      "default_location": "Willow Fork",
+      "preferences": {
+        "household": "household of five in the fictional town of Willow Fork; two adults, three school-age children",
+        "allergies": "peanut allergy in the household; do not suggest or substitute peanut products unless verified safe by package label and shopper approval",
+        "brands": "prefers Riverbend Everyday for staples and Riverbend Selects when quality matters",
+        "fulfillment": "curbside pickup is preferred; usual window is Wednesday 5:00 PM-6:00 PM",
+        "shopping_pattern": "often repeats the weekly grocery basket with milk, eggs, bread, bananas, produce, school snacks, pasta, and one easy dinner"
+      }
+    },
+    {
+      "user_id": "demo-user-2",
+      "display_name": "Mara",
+      "loyalty_tier": "Riverbend Rewards",
+      "default_location": "Brook Bend",
+      "preferences": {
+        "household": "shops for two adults",
+        "brands": "likes prepared foods and floral add-ons",
+        "fulfillment": "delivery when available"
+      }
+    },
+    {
+      "user_id": "demo-user-3",
+      "display_name": "Theo",
+      "loyalty_tier": "Guest",
+      "default_location": "Maple Landing",
+      "preferences": {
+        "household": "single shopper",
+        "brands": "tries premium seafood and seasonal offers",
+        "fulfillment": "curbside pickup after work"
+      }
+    }
+  ]
+}

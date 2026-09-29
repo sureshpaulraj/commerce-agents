@@ -2,7 +2,7 @@
 
 For agents working in this repo, commerce-builder plugin users included. The public
 reference for commerce agents on Claude: a shopping agent and a merchant agent on three
-paths each, five vertical examples, and a Claude Code plugin.
+paths each, six vertical examples, and a Claude Code plugin.
 
 ## Layout
 
@@ -18,11 +18,17 @@ paths each, five vertical examples, and a Claude Code plugin.
 - `*/runtime-agent-sdk/`: each agent as `ClaudeAgentOptions`, with a console.
 - `*/managed-agents/`: the manifest directory (with the derived `system.md`) and the role's MCP server.
 - `examples/demo_common/` and `examples/web-shared/`: what the verticals' APIs and web apps share; `examples/` is the npm workspace.
+  `host.py` holds the model seam: `COMMERCE_DEMO_PROVIDER` selects `anthropic` (the
+  default), `foundry-anthropic` (Claude on Foundry over the native Messages API, so
+  caching and extended thinking survive), or `foundry-openai` (the adapter above). The
+  two Foundry paths authenticate with Entra ID, never a key.
   A deployment's two additions live here too, both inert until their variables are set:
   the HTTP Basic gate in `host.py` and `web-shared/gateway.ts`, and that gateway's
   same-origin API proxy, which is how a browser reaches a gated API it cannot send
   credentials to.
-- `examples/<vertical>/`: `api/`, `data/`, `storefront-web/`, `merchant-web/`; ports 8000-8004, 3000-3004, 3100-3104.
+- `examples/<vertical>/`: `api/`, `data/`, `storefront-web/`, `merchant-web/`; ports 8000-8005, 3000-3005, 3100-3105.
+  `examples/grocery/deploy/` adds the two container images a hosted demo needs, one for the
+  API and one for either web app; each Dockerfile's header carries the build it expects.
 - `plugins/commerce-builder/`: six skills, four commands; `.claude-plugin/marketplace.json` points at it.
 - `docs/`: `safety.md`, `backends.md`, `deployment.md`. `scripts/`: install, demo, smoke, screenshots, check, deploy, verify.
 - `tests/`: the suites that span packages (both roles on all three paths); each package keeps its own `tests/`.
@@ -42,13 +48,15 @@ adds pytest and ruff); `scripts/install.sh` runs it.
 ## Fictional and original
 
 No real company, brand, product, or person appears: the companies are ACME and its lines,
-and Heartland Agronomy Supply and its lines in `examples/agronomy/`; every brand, prompt,
-schema, and figure is invented here. The agronomy example additionally invents every crop,
-pest, label rate, and restriction it shows, and none of it is agronomic advice. Two
-exceptions: deployment and integration targets (the README's "MCP connectors" section;
-platform and SDK names in `docs/deployment.md`, the README's deploying section, and the
-platform tests), and CC0 category photos listed in the `IMAGE-CREDITS.md` beside them. When
-in doubt, redesign rather than rename.
+Heartland Agronomy Supply and its lines in `examples/agronomy/`, and Riverbend Market and
+its banners in `examples/grocery/`; every brand, prompt, schema, and figure is invented
+here. The agronomy example additionally invents every crop, pest, label rate, and
+restriction it shows, and none of it is agronomic advice; the grocery example invents every
+supplier, allergen statement, and nutrition figure it shows, and none of it is dietary or
+medical advice. Two exceptions: deployment and integration targets (the README's "MCP
+connectors" section; platform and SDK names in `docs/deployment.md`, the README's deploying
+section, and the platform tests), and CC0 category photos listed in the `IMAGE-CREDITS.md`
+beside them. When in doubt, redesign rather than rename.
 
 ## Conventions
 

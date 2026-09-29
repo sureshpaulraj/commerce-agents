@@ -151,6 +151,28 @@ VERTICAL_TURNS: dict[str, list[dict[str, Any]]] = {
             "expect_events": {"ui", "turn_complete"},
         },
     ],
+    "grocery": [
+        {
+            "message": (
+                "I need five weeknight dinners for a family of five. There's a peanut "
+                "allergy in the house, so nothing with peanuts anywhere near it."
+            ),
+            "expect_tools": {"search_products"},
+            "expect_events": {"ui", "turn_complete"},
+        },
+        {
+            "message": (
+                "Can you keep it under ninety dollars? Store brands are fine for the staples."
+            ),
+            "expect_tools": set(),
+            "expect_events": {"ui", "turn_complete"},
+        },
+        {
+            "message": "That works — build me the plan and the basket to go with it.",
+            "expect_tools": {"present_meal_plan"},
+            "expect_events": {"ui", "turn_complete"},
+        },
+    ],
 }
 
 VERTICAL_APPS = {
@@ -159,6 +181,7 @@ VERTICAL_APPS = {
     "telecom": "telecom.api.main",
     "entertainment": "entertainment.api.main",
     "agronomy": "agronomy.api.main",
+    "grocery": "grocery.api.main",
 }
 
 # Merchant arcs, one or more per vertical. A ``portal_approve_kind`` step approves the
@@ -447,6 +470,43 @@ MERCHANT_TURNS: dict[str, dict[str, list[dict[str, Any]]]] = {
                 "message": (
                     "Fungicide feels like it's having a moment. Pull the numbers — is it "
                     "really outperforming the rest of the branch this month?"
+                ),
+                "expect_events": {"ui", "turn_complete"},
+                "forbid_tools": {"stage_price_update", "stage_promotion", "apply_change"},
+            },
+        ],
+    },
+    "grocery": {
+        # The store briefing, a restock with a listing fix, then after the approval the
+        # segment check the fixture's metrics support.
+        "morning": [
+            {
+                "message": "What needs my attention this morning?",
+                "expect_tools": {"get_business_snapshot"},
+                "expect_events": {"ui", "turn_complete"},
+                "forbid_tools": {"apply_change"},
+            },
+            {
+                "message": (
+                    "Restock the chicken cutlets with enough to cover the next month at "
+                    "the current pace, and fix that listing's description so it covers "
+                    "what's been missing. Show me both before anything goes live."
+                ),
+                "expect_tools": {"stage_inventory_action"},
+                "expect_events": {"ui", "change_update", "turn_complete"},
+                "forbid_tools": {"apply_change"},
+            },
+            {
+                "message": "Looks right — approve the restock.",
+                "expect_tools": {"apply_change"},
+                "expect_events": {"turn_complete"},
+                "forbid_applied_change": True,
+            },
+            {"portal_approve_kind": "inventory_action", "expect_stock_increase": "RB-1103"},
+            {
+                "message": (
+                    "Riverbend Table feels like it's having a moment. Pull the numbers — "
+                    "is prepared food really outperforming the rest of the store this month?"
                 ),
                 "expect_events": {"ui", "turn_complete"},
                 "forbid_tools": {"stage_price_update", "stage_promotion", "apply_change"},

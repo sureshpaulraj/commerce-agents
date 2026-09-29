@@ -20,14 +20,14 @@ git clone https://github.com/anthropics/commerce-agents.git && cd commerce-agent
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt       # the seven packages and their pinned dependencies
 cp .env.example .env                  # add ANTHROPIC_API_KEY
-(cd examples && npm ci)               # the ten web apps share one workspace
+(cd examples && npm ci)               # the twelve web apps share one workspace
 python scripts/run_demo.py retail     # API :8000 + storefront :3000
 ```
 
 `--merchant` starts the portal instead of the storefront and `--all` starts both. The
 verticals are `retail` (:3000, portal :3100), `travel` (:3001, :3101), `telecom` (:3002,
-:3102), `entertainment` (:3003, :3103), and `agronomy` (:3004, :3104); each README lists
-prompts to try on both surfaces.
+:3102), `entertainment` (:3003, :3103), `agronomy` (:3004, :3104), and `grocery` (:3005,
+:3105); each README lists prompts to try on both surfaces.
 
 ## Quick start: build your own
 
@@ -129,6 +129,7 @@ the MCP servers bind to loopback.
 | [`examples/telecom/`](examples/telecom/) ACME Mobile | Account context, plan matrix, server-authored fee disclosures | Plan mix, price moves that state the lines affected, protected regulated fees |
 | [`examples/entertainment/`](examples/entertainment/) ACME Tickets | Timed holds, waitlists, transfers, venue map, all-in fee disclosures | Event pacing, hold releases that add real capacity, fee-preserving price moves |
 | [`examples/agronomy/`](examples/agronomy/) Heartland Agronomy Supply | Label-rate products and a `present_application_plan` extension that computes the rate math on the server and refuses an out-of-label rate | Branch digest, restocks against the spray window, segment analysis |
+| [`examples/grocery/`](examples/grocery/) Riverbend Market | A `present_meal_plan` extension that scales a week of meals to whole packs on the server, and refuses any item whose allergen statement is not verified on its record | Store digest, restocks against the weekly ad, shrink and department analysis |
 
 Each example's README has a `Try` section: the turns `scripts/smoke_chat.py` runs, and single
 prompts with what a good answer does.

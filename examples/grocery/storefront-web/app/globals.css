@@ -1,0 +1,96 @@
+/*
+ * Copyright 2026 Anthropic PBC
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "tailwindcss";
+@source "../../../web-shared";
+@import "../../../web-shared/base.css";
+
+/*
+ * Riverbend Market design system: fresh greens, warm neutrals, white cards, and gold stars.
+ */
+
+:root {
+  --ground: #f6f2e8; /* page */
+  --surface: #ffffff; /* text on ink */
+  --card: #ffffff; /* cards, panel, app bar */
+  --chrome: #ffffff; /* app bar */
+  --well: #eee6d5; /* chips, thumbs, hover ground */
+  --ink: #173c2b; /* deep market green: text and structure */
+  --ink-2: #355443; /* secondary text that still reads as content */
+  --ink-soft: #687466; /* labels and metadata */
+  --ink-faint: #a2aa9d; /* hints and placeholders */
+  --line: rgba(23, 60, 43, 0.13);
+  --line-strong: rgba(23, 60, 43, 0.21); /* control borders */
+  --accent: #3c8a5f; /* fresh green: assistant mark, primary actions, focus */
+  --accent-strong: #2f704d; /* filled buttons */
+  --accent-soft: #e3f2e8;
+  --accent-ink: #1d5b3a; /* text on accent-soft */
+  --on-accent: #ffffff;
+  --ok: #237b4d; /* delivery promises, delivered */
+  --ok-soft: #e3f4ec;
+  --warn: #a46100; /* low stock, delays, results held by a safety gate */
+  --warn-soft: #fff0d4;
+  --danger: #b93a32; /* sale tags and errors */
+  --danger-soft: #fdecec;
+  --info: #2f6f9f; /* shipped */
+  --info-soft: #e7f1f8;
+  --violet: #6750a4; /* returns in progress */
+  --violet-soft: #eeeafd;
+  --star: #f0a500; /* rating stars */
+  --shadow-sm: 0 1px 2px rgba(23, 60, 43, 0.07), 0 1px 1px rgba(23, 60, 43, 0.04);
+  --shadow: 0 1px 2px rgba(23, 60, 43, 0.07), 0 4px 14px -6px rgba(23, 60, 43, 0.15);
+  --shadow-lg: 0 12px 40px -12px rgba(23, 60, 43, 0.28), 0 2px 6px rgba(23, 60, 43, 0.08);
+  --radius: 12px;
+}
+
+body {
+  font-family:
+    var(--font-body), "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+  /* Unhinted web fonts otherwise get their advances rounded by FreeType, which eats spaces. */
+  text-rendering: geometricPrecision;
+}
+
+/* Conversation chrome the shared components render. */
+.user-bubble {
+  border-radius: 16px 16px 5px 16px;
+  background: var(--ink);
+  color: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.chip {
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+  padding: 6px 13px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  transition: border-color 150ms, background-color 150ms, color 150ms;
+}
+.chip:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.chip:disabled {
+  opacity: 0.5;
+}
+.btn-primary {
+  border-radius: var(--radius);
+  background: var(--accent-strong);
+  padding: 10px 16px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--on-accent);
+  transition: filter 150ms;
+}
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+.btn-primary:disabled {
+  background: var(--well);
+  color: var(--ink-soft);
+}

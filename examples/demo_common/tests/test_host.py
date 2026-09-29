@@ -4,7 +4,9 @@
 import asyncio
 import base64
 import os
+import time
 
+import anthropic
 import pytest
 from fastapi.testclient import TestClient
 
@@ -148,3 +150,82 @@ async def test_spawn_background_holds_the_task_until_it_finishes():
             break
         await asyncio.sleep(0)
     assert not _background_tasks
+
+
+def _provider(monkeypatch, provider: str | None, **env: str | None):
+    for name in (
+        "COMMERCE_DEMO_PROVIDER",
+        "FOUNDRY_RESOURCE",
+        "FOUNDRY_DEPLOYMENT",
+        "FOUNDRY_BASE_URL",
+    ):
+        monkeypatch.delenv(name, raising=False)
+    if provider is not None:
+        monkeypatch.setenv("COMMERCE_DEMO_PROVIDER", provider)
+    for name, value in env.items():
+        if value is not None:
+            monkeypatch.setenv(name, value)
+
+
+def test_no_provider_leaves_the_sdk_to_build_its_own_client(monkeypatch):
+    _provider(monkeypatch, None)
+    assert host_module.demo_model_client() is None
+
+
+def test_an_anthropic_deployment_is_served_on_the_messages_api(monkeypatch):
+    # Foundry serves Anthropic models on the Messages API this repo already speaks, so
+    # nothing is translated and cache breakpoints survive.
+    _provider(
+        monkeypatch,
+        "foundry-anthropic",
+        FOUNDRY_RESOURCE="stub-resource",
+        FOUNDRY_DEPLOYMENT="claude-opus-5-5",
+    )
+    client = host_module.demo_model_client()
+    assert isinstance(client, anthropic.AsyncAnthropicFoundry)
+    assert "stub-resource.services.ai.azure.com" in str(client.base_url)
+
+
+def test_both_foundry_providers_insist_on_a_deployment(monkeypatch):
+    for provider in ("foundry-anthropic", "foundry-openai"):
+        _provider(monkeypatch, provider, FOUNDRY_RESOURCE="stub-resource")
+        with pytest.raises(RuntimeError, match="FOUNDRY_DEPLOYMENT"):
+            host_module.demo_model_client()
+
+
+def test_the_health_route_names_the_deployment_that_served_the_turn(monkeypatch):
+    # config.model is the configured Anthropic name, which a Foundry deployment replaces.
+    _provider(monkeypatch, None)
+    assert host_module.demo_model_name("claude-opus-4-5") == "claude-opus-4-5"
+    for provider in ("foundry-anthropic", "foundry-openai"):
+        _provider(
+            monkeypatch,
+            provider,
+            FOUNDRY_RESOURCE="stub-resource",
+            FOUNDRY_DEPLOYMENT="a-deployment",
+        )
+        assert host_module.demo_model_name("claude-opus-4-5") == "a-deployment"
+
+
+def test_the_token_provider_refreshes_only_when_the_token_is_nearly_due(monkeypatch):
+    issued = []
+
+    class _Token:
+        def __init__(self, expires_on: float) -> None:
+            self.token = f"token-{len(issued)}"
+            self.expires_on = expires_on
+
+    class _Credential:
+        def get_token(self, _scope):
+            token = _Token(time.time() + 3600)
+            issued.append(token)
+            return token
+
+    monkeypatch.setattr(
+        "azure.identity.DefaultAzureCredential", lambda *a, **k: _Credential(), raising=False
+    )
+    provider = host_module._entra_token_provider()
+    assert asyncio.run(provider()) == "token-0"
+    # The second call is inside the window, so it reuses rather than re-authenticating.
+    assert asyncio.run(provider()) == "token-0"
+    assert len(issued) == 1

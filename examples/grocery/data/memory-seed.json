@@ -1,0 +1,40 @@
+{
+  "demo-user": [
+    {
+      "key": "household_size",
+      "value": "household of five in Willow Fork; weekly basket should cover family dinners, school lunches, and breakfast staples",
+      "category": "context",
+      "updated_at": "2026-08-05T15:30:00Z"
+    },
+    {
+      "key": "peanut_allergy",
+      "value": "peanut allergy in the household; avoid peanut products and do not accept allergy-relevant substitutions unless allergen data is verified and the shopper approves",
+      "category": "constraint",
+      "updated_at": "2026-08-12T18:45:00Z"
+    },
+    {
+      "key": "store_brand_preference",
+      "value": "prefers Riverbend Everyday for staples and Riverbend Selects for premium upgrades when the price difference is modest",
+      "category": "preference",
+      "updated_at": "2026-08-19T13:05:00Z"
+    },
+    {
+      "key": "fulfillment_preference",
+      "value": "prefers curbside pickup at Willow Fork Riverbend Market, usually Wednesday 5:00 PM-6:00 PM",
+      "category": "preference",
+      "updated_at": "2026-08-26T14:10:00Z"
+    },
+    {
+      "key": "favorite_milk",
+      "value": "usually buys RB-1202 Riverbend Everyday 2 Percent Milk, two gallons for the weekly shop",
+      "category": "preference",
+      "updated_at": "2026-09-02T21:00:00Z"
+    },
+    {
+      "key": "favorite_easy_dinner",
+      "value": "likes RB-2203 Classic Rotisserie Chicken with RB-2204 Garden Side Salad for busy evenings",
+      "category": "preference",
+      "updated_at": "2026-09-03T17:25:00Z"
+    }
+  ]
+}

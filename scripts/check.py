@@ -29,7 +29,7 @@ sys.path.insert(0, str(REPO_ROOT))
 sys.path.insert(0, str(REPO_ROOT / "examples"))
 
 PROBLEMS: list[str] = []
-VERTICALS = ("retail", "travel", "telecom", "entertainment", "agronomy")
+VERTICALS = ("retail", "travel", "telecom", "entertainment", "agronomy", "grocery")
 
 
 def problem(message: str) -> None:
@@ -447,6 +447,12 @@ MERCHANT_FIXTURES = (
         "agronomy",
         "branch",
         ("date", "sales", "orders", "traffic", "fungicide_sales"),
+        stock_rows_extra,
+    ),
+    MerchantFixtures(
+        "grocery",
+        "store",
+        ("date", "sales", "orders", "traffic", "prepared_food_sales"),
         stock_rows_extra,
     ),
 )

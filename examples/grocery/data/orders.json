@@ -1,0 +1,385 @@
+{
+  "_comment": "In-flight orders (processing/shipped/delayed) are re-dated at load time relative to dates_anchored_to (demo_common.storefront_fixtures.redate_in_flight_orders), so estimates always read current. Author their dates as if dates_anchored_to were today.",
+  "dates_anchored_to": "2026-09-09",
+  "orders": [
+    {
+      "order_id": "RBM-71042",
+      "user_id": "demo-user",
+      "status": "delivered",
+      "placed_at": "2026-09-02T14:32:00Z",
+      "items": [
+        {
+          "product_id": "RB-1202",
+          "title": "Riverbend Everyday 2 Percent Milk",
+          "quantity": 2,
+          "price": 3.19
+        },
+        {
+          "product_id": "RB-1301",
+          "title": "Riverbend Everyday White Sandwich Bread",
+          "quantity": 2,
+          "price": 2.49
+        },
+        {
+          "product_id": "RB-1205",
+          "title": "Riverbend Everyday Large White Eggs",
+          "quantity": 2,
+          "price": 2.89
+        },
+        {
+          "product_id": "RB-1022",
+          "title": "Riverbend Everyday Bananas",
+          "quantity": 3,
+          "price": 1.79
+        },
+        {
+          "product_id": "RB-1009",
+          "title": "Riverbend Everyday Chopped Romaine",
+          "quantity": 2,
+          "price": 2.99
+        },
+        {
+          "product_id": "RB-1019",
+          "title": "Baby Carrots",
+          "quantity": 2,
+          "price": 1.99
+        },
+        {
+          "product_id": "RB-1102",
+          "title": "Riverbend Everyday Chicken Thighs",
+          "quantity": 2,
+          "price": 5.49
+        },
+        {
+          "product_id": "RB-1105",
+          "title": "Riverbend Everyday Ground Beef Family Pack",
+          "quantity": 1,
+          "price": 15.99
+        },
+        {
+          "product_id": "RB-1503",
+          "title": "Riverbend Everyday Penne Pasta",
+          "quantity": 3,
+          "price": 1.49
+        },
+        {
+          "product_id": "RB-1516",
+          "title": "Riverbend Everyday Marinara Sauce",
+          "quantity": 2,
+          "price": 2.29
+        },
+        {
+          "product_id": "RB-1401",
+          "title": "Riverbend Everyday Mixed Vegetables",
+          "quantity": 3,
+          "price": 1.79
+        },
+        {
+          "product_id": "RB-1701",
+          "title": "Riverbend Everyday Tortilla Chips",
+          "quantity": 2,
+          "price": 2.49
+        },
+        {
+          "product_id": "RB-1803",
+          "title": "Riverbend Everyday Corn Squares Cereal",
+          "quantity": 2,
+          "price": 2.99
+        },
+        {
+          "product_id": "RB-1604",
+          "title": "Riverbend Everyday Apple Juice",
+          "quantity": 2,
+          "price": 3.29
+        },
+        {
+          "product_id": "RB-1904",
+          "title": "Riverbend Everyday Bath Tissue",
+          "quantity": 1,
+          "price": 6.99
+        }
+      ],
+      "total": 98.39,
+      "estimated_delivery": "2026-09-02 curbside pickup 5:00 PM-6:00 PM",
+      "tracking_url": "https://track.example.com/RBM-71042"
+    },
+    {
+      "order_id": "RBM-70951",
+      "user_id": "demo-user",
+      "status": "delivered",
+      "placed_at": "2026-08-26T15:04:00Z",
+      "items": [
+        {
+          "product_id": "RB-1202",
+          "title": "Riverbend Everyday 2 Percent Milk",
+          "quantity": 2,
+          "price": 3.19
+        },
+        {
+          "product_id": "RB-1301",
+          "title": "Riverbend Everyday White Sandwich Bread",
+          "quantity": 2,
+          "price": 2.49
+        },
+        {
+          "product_id": "RB-1205",
+          "title": "Riverbend Everyday Large White Eggs",
+          "quantity": 2,
+          "price": 2.89
+        },
+        {
+          "product_id": "RB-1022",
+          "title": "Riverbend Everyday Bananas",
+          "quantity": 3,
+          "price": 1.79
+        },
+        {
+          "product_id": "RB-1008",
+          "title": "Triple-Washed Baby Spinach",
+          "quantity": 1,
+          "price": 3.79
+        },
+        {
+          "product_id": "RB-1011",
+          "title": "Yellow Onions",
+          "quantity": 1,
+          "price": 2.49
+        },
+        {
+          "product_id": "RB-1101",
+          "title": "Boneless Skinless Chicken Breasts",
+          "quantity": 2,
+          "price": 7.99
+        },
+        {
+          "product_id": "RB-1104",
+          "title": "Ground Beef 85 Percent Lean",
+          "quantity": 1,
+          "price": 6.49
+        },
+        {
+          "product_id": "RB-1501",
+          "title": "Spaghetti Pasta",
+          "quantity": 3,
+          "price": 1.79
+        },
+        {
+          "product_id": "RB-1508",
+          "title": "Diced Tomatoes No Salt Added",
+          "quantity": 3,
+          "price": 1.49
+        },
+        {
+          "product_id": "RB-1403",
+          "title": "Steamable Broccoli Florets",
+          "quantity": 2,
+          "price": 2.49
+        },
+        {
+          "product_id": "RB-1712",
+          "title": "Chocolate Chip Granola Bars",
+          "quantity": 2,
+          "price": 3.99
+        },
+        {
+          "product_id": "RB-1805",
+          "title": "Riverbend Everyday Quick Oats",
+          "quantity": 1,
+          "price": 2.79
+        },
+        {
+          "product_id": "RB-1601",
+          "title": "Riverbend Everyday Spring Water",
+          "quantity": 1,
+          "price": 3.99
+        },
+        {
+          "product_id": "RB-1901",
+          "title": "Riverbend Everyday Paper Towels",
+          "quantity": 1,
+          "price": 7.99
+        }
+      ],
+      "total": 88.83,
+      "estimated_delivery": "2026-08-26 curbside pickup 5:00 PM-6:00 PM",
+      "tracking_url": "https://track.example.com/RBM-70951"
+    },
+    {
+      "order_id": "RBM-70883",
+      "user_id": "demo-user",
+      "status": "delivered",
+      "placed_at": "2026-08-19T13:18:00Z",
+      "items": [
+        {
+          "product_id": "RB-1202",
+          "title": "Riverbend Everyday 2 Percent Milk",
+          "quantity": 2,
+          "price": 3.19
+        },
+        {
+          "product_id": "RB-1304",
+          "title": "Riverbend Selects Whole Wheat Bread",
+          "quantity": 1,
+          "price": 3.99
+        },
+        {
+          "product_id": "RB-1205",
+          "title": "Riverbend Everyday Large White Eggs",
+          "quantity": 2,
+          "price": 2.89
+        },
+        {
+          "product_id": "RB-1022",
+          "title": "Riverbend Everyday Bananas",
+          "quantity": 3,
+          "price": 1.79
+        },
+        {
+          "product_id": "RB-1002",
+          "title": "Riverbend Everyday Gala Apples",
+          "quantity": 2,
+          "price": 3.29
+        },
+        {
+          "product_id": "RB-1015",
+          "title": "Roma Tomatoes",
+          "quantity": 2,
+          "price": 2.69
+        },
+        {
+          "product_id": "RB-1106",
+          "title": "Ground Turkey 93 Percent Lean",
+          "quantity": 2,
+          "price": 5.99
+        },
+        {
+          "product_id": "RB-1108",
+          "title": "Riverbend Selects Smoked Bacon",
+          "quantity": 1,
+          "price": 6.99
+        },
+        {
+          "product_id": "RB-1505",
+          "title": "Riverbend Everyday Long Grain White Rice",
+          "quantity": 1,
+          "price": 5.99
+        },
+        {
+          "product_id": "RB-1515",
+          "title": "Tomato Basil Pasta Sauce",
+          "quantity": 2,
+          "price": 3.49
+        },
+        {
+          "product_id": "RB-1406",
+          "title": "Riverbend Everyday Pepperoni Pizza",
+          "quantity": 2,
+          "price": 5.49
+        },
+        {
+          "product_id": "RB-1708",
+          "title": "Woven Wheat Crackers",
+          "quantity": 2,
+          "price": 3.79
+        },
+        {
+          "product_id": "RB-1803",
+          "title": "Riverbend Everyday Corn Squares Cereal",
+          "quantity": 2,
+          "price": 2.99
+        },
+        {
+          "product_id": "RB-1603",
+          "title": "Orange Juice",
+          "quantity": 1,
+          "price": 4.99
+        },
+        {
+          "product_id": "RB-1906",
+          "title": "Riverbend Everyday Dish Soap",
+          "quantity": 1,
+          "price": 2.79
+        }
+      ],
+      "total": 97.74,
+      "estimated_delivery": "2026-08-19 curbside pickup 5:00 PM-6:00 PM",
+      "tracking_url": "https://track.example.com/RBM-70883"
+    },
+    {
+      "order_id": "RBM-71077",
+      "user_id": "demo-user-2",
+      "status": "processing",
+      "placed_at": "2026-09-07T08:12:00Z",
+      "items": [
+        {
+          "product_id": "RB-2203",
+          "title": "Classic Rotisserie Chicken",
+          "quantity": 1,
+          "price": 7.49
+        },
+        {
+          "product_id": "RB-2204",
+          "title": "Garden Side Salad",
+          "quantity": 2,
+          "price": 4.99
+        },
+        {
+          "product_id": "RB-1602",
+          "title": "Sparkling Water Lime",
+          "quantity": 2,
+          "price": 4.49
+        },
+        {
+          "product_id": "RB-2301",
+          "title": "Seasonal Mixed Bouquet",
+          "quantity": 1,
+          "price": 14.99
+        }
+      ],
+      "total": 41.44,
+      "estimated_delivery": "2026-09-09 delivery 2:00 PM-4:00 PM",
+      "tracking_url": "https://track.example.com/RBM-71077"
+    },
+    {
+      "order_id": "RBM-71108",
+      "user_id": "demo-user-3",
+      "status": "shipped",
+      "placed_at": "2026-09-08T10:25:00Z",
+      "items": [
+        {
+          "product_id": "RB-1111",
+          "title": "Atlantic-Style Salmon Fillets",
+          "quantity": 2,
+          "price": 12.99
+        },
+        {
+          "product_id": "RB-1006",
+          "title": "Blueberries",
+          "quantity": 2,
+          "price": 3.99
+        },
+        {
+          "product_id": "RB-1210",
+          "title": "Riverbend Selects Berry Greek Yogurt Cups",
+          "quantity": 3,
+          "price": 4.49
+        },
+        {
+          "product_id": "RB-1412",
+          "title": "Almond Crunch Ice Cream Bars",
+          "quantity": 1,
+          "price": 5.99
+        },
+        {
+          "product_id": "RB-1610",
+          "title": "Red Table Wine",
+          "quantity": 1,
+          "price": 12.99
+        }
+      ],
+      "total": 66.41,
+      "estimated_delivery": "2026-09-10 curbside pickup 6:00 PM-7:00 PM",
+      "tracking_url": "https://track.example.com/RBM-71108"
+    }
+  ]
+}

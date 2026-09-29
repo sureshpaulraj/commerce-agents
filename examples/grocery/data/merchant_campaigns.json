@@ -1,0 +1,71 @@
+{
+  "_comment": "Campaign windows are shifted forward by whole weeks at load time, relative to dates_anchored_to (demo_common.merchant_fixtures.load_campaigns), the same shift merchant_metrics.json gets. Author the dates as if dates_anchored_to were today.",
+  "dates_anchored_to": "2026-09-09",
+  "campaigns": [
+    {
+      "campaign_id": "C-301",
+      "name": "Weekly ad: berries, rotisserie, and pantry staples",
+      "status": "active",
+      "objective": "Feature RB-1007 strawberries, RB-2203 rotisserie chicken, RB-1503 penne, and RB-1516 marinara to build a quick weeknight meal basket.",
+      "channel": "Riverbend Market circular, app home page, and shelf tags",
+      "budget": 9200.0,
+      "spend": 6110.0,
+      "revenue": 38400.0,
+      "currency": "USD",
+      "starts": "2026-09-04",
+      "ends": "2026-09-10"
+    },
+    {
+      "campaign_id": "C-302",
+      "name": "Digital coupon: Riverbend Everyday family stock-up",
+      "status": "active",
+      "objective": "Lift own-brand repeat purchase with app coupons on RB-1202 milk, RB-1301 bread, RB-1505 rice, RB-1701 chips, and RB-1904 bath tissue.",
+      "channel": "Riverbend Rewards app coupons",
+      "budget": 5400.0,
+      "spend": 3185.0,
+      "revenue": 22640.0,
+      "currency": "USD",
+      "starts": "2026-09-02",
+      "ends": "2026-09-16"
+    },
+    {
+      "campaign_id": "C-303",
+      "name": "Fuel Stop rewards: dinner tonight bundle",
+      "status": "active",
+      "objective": "Award bonus Riverbend Rewards points on RB-2201 roasted chicken, RB-2204 side salad, and RB-1602 sparkling water; points convert to cents-per-gallon fuel savings.",
+      "channel": "app offer plus fuel pump screen",
+      "budget": 3600.0,
+      "spend": 2410.0,
+      "revenue": 11880.0,
+      "currency": "USD",
+      "starts": "2026-09-06",
+      "ends": "2026-09-13"
+    },
+    {
+      "campaign_id": "C-304",
+      "name": "End cap reset: taco night",
+      "status": "paused",
+      "objective": "Move slow end-cap inventory by bundling RB-1310 tortillas, RB-1520 salsa, RB-1522 seasoning, RB-1013 peppers, and RB-1105 ground beef family packs.",
+      "channel": "store end cap and associate prompt at curbside staging",
+      "budget": 2100.0,
+      "spend": 1180.0,
+      "revenue": 3240.0,
+      "currency": "USD",
+      "starts": "2026-08-29",
+      "ends": "2026-09-12"
+    },
+    {
+      "campaign_id": "C-305",
+      "name": "Prepared foods markdown rescue",
+      "status": "ended",
+      "objective": "Test late-day markdowns on RB-2202 meals, RB-2206 peanut noodle salad, RB-2208 veggie wraps, and RB-2212 macaroni to reduce shrink before close.",
+      "channel": "digital shelf tag and associate handheld alert",
+      "budget": 1250.0,
+      "spend": 1250.0,
+      "revenue": null,
+      "currency": "USD",
+      "starts": "2026-08-18",
+      "ends": "2026-09-01"
+    }
+  ]
+}

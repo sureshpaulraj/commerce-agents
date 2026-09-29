@@ -1,0 +1,737 @@
+{
+  "default_stock": 55,
+  "default_threshold": 12,
+  "inventory": [
+    {
+      "product_id": "RB-1001",
+      "stock": 88,
+      "threshold": 40,
+      "sales_last_30d": 420,
+      "unit_cost": 2.78
+    },
+    {
+      "product_id": "RB-1002",
+      "stock": 32,
+      "threshold": 36,
+      "sales_last_30d": 388,
+      "unit_cost": 2.17
+    },
+    {
+      "product_id": "RB-1003",
+      "stock": 146,
+      "threshold": 28,
+      "sales_last_30d": 54,
+      "unit_cost": 1.82,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1004",
+      "stock": 41,
+      "threshold": 30,
+      "sales_last_30d": 172,
+      "unit_cost": 3.51
+    },
+    {
+      "product_id": "RB-1005",
+      "stock": 18,
+      "threshold": 26,
+      "sales_last_30d": 136,
+      "unit_cost": 3.77
+    },
+    {
+      "product_id": "RB-1006",
+      "stock": 24,
+      "threshold": 32,
+      "sales_last_30d": 244,
+      "unit_cost": 2.31
+    },
+    {
+      "product_id": "RB-1007",
+      "stock": 260,
+      "threshold": 34,
+      "sales_last_30d": 76,
+      "unit_cost": 2.56,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1008",
+      "stock": 19,
+      "threshold": 42,
+      "sales_last_30d": 302,
+      "unit_cost": 2.24
+    },
+    {
+      "product_id": "RB-1009",
+      "stock": 14,
+      "threshold": 36,
+      "sales_last_30d": 285,
+      "unit_cost": 1.85
+    },
+    {
+      "product_id": "RB-1010",
+      "stock": 96,
+      "threshold": 24,
+      "sales_last_30d": 68,
+      "unit_cost": 2.49,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1011",
+      "stock": 116,
+      "threshold": 24,
+      "sales_last_30d": 188,
+      "unit_cost": 1.72
+    },
+    {
+      "product_id": "RB-1013",
+      "stock": 73,
+      "threshold": 22,
+      "sales_last_30d": 112,
+      "unit_cost": 3.04
+    },
+    {
+      "product_id": "RB-1015",
+      "stock": 168,
+      "threshold": 30,
+      "sales_last_30d": 92,
+      "unit_cost": 1.75,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1016",
+      "stock": 118,
+      "threshold": 18,
+      "sales_last_30d": 34,
+      "unit_cost": 2.68,
+      "slow_mover": true,
+      "content_quality": "needs_work",
+      "missing_attributes": [
+        "use-by window",
+        "prepared date on case label"
+      ]
+    },
+    {
+      "product_id": "RB-1017",
+      "stock": 94,
+      "threshold": 26,
+      "sales_last_30d": 216,
+      "unit_cost": 2.79
+    },
+    {
+      "product_id": "RB-1019",
+      "stock": 27,
+      "threshold": 30,
+      "sales_last_30d": 252,
+      "unit_cost": 1.29
+    },
+    {
+      "product_id": "RB-1021",
+      "stock": 11,
+      "threshold": 28,
+      "sales_last_30d": 198,
+      "unit_cost": 2.39
+    },
+    {
+      "product_id": "RB-1022",
+      "stock": 64,
+      "threshold": 46,
+      "sales_last_30d": 510,
+      "unit_cost": 1.27
+    },
+    {
+      "product_id": "RB-1101",
+      "stock": 22,
+      "threshold": 34,
+      "sales_last_30d": 214,
+      "unit_cost": 5.51
+    },
+    {
+      "product_id": "RB-1102",
+      "stock": 18,
+      "threshold": 30,
+      "sales_last_30d": 198,
+      "unit_cost": 3.84
+    },
+    {
+      "product_id": "RB-1103",
+      "stock": 9,
+      "threshold": 22,
+      "sales_last_30d": 146,
+      "unit_cost": 6.11
+    },
+    {
+      "product_id": "RB-1104",
+      "stock": 36,
+      "threshold": 32,
+      "sales_last_30d": 268,
+      "unit_cost": 4.67
+    },
+    {
+      "product_id": "RB-1105",
+      "stock": 51,
+      "threshold": 24,
+      "sales_last_30d": 94,
+      "unit_cost": 11.67
+    },
+    {
+      "product_id": "RB-1106",
+      "stock": 14,
+      "threshold": 26,
+      "sales_last_30d": 151,
+      "unit_cost": 4.19
+    },
+    {
+      "product_id": "RB-1107",
+      "stock": 72,
+      "threshold": 18,
+      "sales_last_30d": 42,
+      "unit_cost": 5.6,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1108",
+      "stock": 23,
+      "threshold": 20,
+      "sales_last_30d": 118,
+      "unit_cost": 4.54
+    },
+    {
+      "product_id": "RB-1109",
+      "stock": 84,
+      "threshold": 16,
+      "sales_last_30d": 31,
+      "unit_cost": 3.88,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1111",
+      "stock": 7,
+      "threshold": 20,
+      "sales_last_30d": 122,
+      "unit_cost": 8.31
+    },
+    {
+      "product_id": "RB-1112",
+      "stock": 48,
+      "threshold": 14,
+      "sales_last_30d": 27,
+      "unit_cost": 6.29,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1113",
+      "stock": 19,
+      "threshold": 18,
+      "sales_last_30d": 86,
+      "unit_cost": 7.14
+    },
+    {
+      "product_id": "RB-1116",
+      "stock": 16,
+      "threshold": 18,
+      "sales_last_30d": 94,
+      "unit_cost": 6.39
+    },
+    {
+      "product_id": "RB-1201",
+      "stock": 45,
+      "threshold": 44,
+      "sales_last_30d": 392,
+      "unit_cost": 2.84
+    },
+    {
+      "product_id": "RB-1202",
+      "stock": 21,
+      "threshold": 42,
+      "sales_last_30d": 460,
+      "unit_cost": 2.46
+    },
+    {
+      "product_id": "RB-1203",
+      "stock": 86,
+      "threshold": 18,
+      "sales_last_30d": 46,
+      "unit_cost": 3.1,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1204",
+      "stock": 38,
+      "threshold": 36,
+      "sales_last_30d": 356,
+      "unit_cost": 2.65
+    },
+    {
+      "product_id": "RB-1205",
+      "stock": 18,
+      "threshold": 38,
+      "sales_last_30d": 410,
+      "unit_cost": 2.25
+    },
+    {
+      "product_id": "RB-1206",
+      "stock": 44,
+      "threshold": 22,
+      "sales_last_30d": 162,
+      "unit_cost": 3.35
+    },
+    {
+      "product_id": "RB-1207",
+      "stock": 17,
+      "threshold": 20,
+      "sales_last_30d": 138,
+      "unit_cost": 3.09
+    },
+    {
+      "product_id": "RB-1208",
+      "stock": 92,
+      "threshold": 18,
+      "sales_last_30d": 74,
+      "unit_cost": 3.57,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1209",
+      "stock": 33,
+      "threshold": 24,
+      "sales_last_30d": 188,
+      "unit_cost": 3.29
+    },
+    {
+      "product_id": "RB-1210",
+      "stock": 124,
+      "threshold": 18,
+      "sales_last_30d": 62,
+      "unit_cost": 2.87,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1211",
+      "stock": 28,
+      "threshold": 26,
+      "sales_last_30d": 220,
+      "unit_cost": 2.71
+    },
+    {
+      "product_id": "RB-1212",
+      "stock": 16,
+      "threshold": 24,
+      "sales_last_30d": 190,
+      "unit_cost": 2.34
+    },
+    {
+      "product_id": "RB-1215",
+      "stock": 24,
+      "threshold": 20,
+      "sales_last_30d": 172,
+      "unit_cost": 1.53
+    },
+    {
+      "product_id": "RB-1216",
+      "stock": 68,
+      "threshold": 16,
+      "sales_last_30d": 52,
+      "unit_cost": 2.63,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1301",
+      "stock": 36,
+      "threshold": 48,
+      "sales_last_30d": 482,
+      "unit_cost": 1.64
+    },
+    {
+      "product_id": "RB-1302",
+      "stock": 124,
+      "threshold": 28,
+      "sales_last_30d": 96,
+      "unit_cost": 2.16,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1303",
+      "stock": 68,
+      "threshold": 18,
+      "sales_last_30d": 58,
+      "unit_cost": 2.87,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1304",
+      "stock": 19,
+      "threshold": 24,
+      "sales_last_30d": 166,
+      "unit_cost": 2.43
+    },
+    {
+      "product_id": "RB-1305",
+      "stock": 72,
+      "threshold": 12,
+      "sales_last_30d": 24,
+      "unit_cost": 2.89,
+      "slow_mover": true,
+      "content_quality": "needs_work",
+      "missing_attributes": [
+        "peanut allergen callout in pickup substitution notes"
+      ]
+    },
+    {
+      "product_id": "RB-1306",
+      "stock": 44,
+      "threshold": 18,
+      "sales_last_30d": 142,
+      "unit_cost": 2.83
+    },
+    {
+      "product_id": "RB-1307",
+      "stock": 31,
+      "threshold": 14,
+      "sales_last_30d": 84,
+      "unit_cost": 2.57
+    },
+    {
+      "product_id": "RB-1308",
+      "stock": 22,
+      "threshold": 28,
+      "sales_last_30d": 244,
+      "unit_cost": 1.84
+    },
+    {
+      "product_id": "RB-1309",
+      "stock": 86,
+      "threshold": 14,
+      "sales_last_30d": 40,
+      "unit_cost": 2.65,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1310",
+      "stock": 28,
+      "threshold": 26,
+      "sales_last_30d": 214,
+      "unit_cost": 2.14
+    },
+    {
+      "product_id": "RB-1311",
+      "stock": 16,
+      "threshold": 22,
+      "sales_last_30d": 160,
+      "unit_cost": 1.72
+    },
+    {
+      "product_id": "RB-1312",
+      "stock": 112,
+      "threshold": 12,
+      "sales_last_30d": 36,
+      "unit_cost": 3.13,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-2201",
+      "stock": 30,
+      "threshold": 24,
+      "sales_last_30d": 206,
+      "unit_cost": 4.94
+    },
+    {
+      "product_id": "RB-2202",
+      "stock": 84,
+      "threshold": 18,
+      "sales_last_30d": 41,
+      "unit_cost": 4.31,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-2203",
+      "stock": 11,
+      "threshold": 28,
+      "sales_last_30d": 268,
+      "unit_cost": 4.19
+    },
+    {
+      "product_id": "RB-2204",
+      "stock": 19,
+      "threshold": 24,
+      "sales_last_30d": 154,
+      "unit_cost": 2.84
+    },
+    {
+      "product_id": "RB-2205",
+      "stock": 15,
+      "threshold": 20,
+      "sales_last_30d": 176,
+      "unit_cost": 4.19
+    },
+    {
+      "product_id": "RB-2206",
+      "stock": 92,
+      "threshold": 8,
+      "sales_last_30d": 18,
+      "unit_cost": 3.7,
+      "slow_mover": true,
+      "content_quality": "needs_work",
+      "missing_attributes": [
+        "verified allergen handling status for peanut sauce"
+      ]
+    },
+    {
+      "product_id": "RB-2207",
+      "stock": 28,
+      "threshold": 16,
+      "sales_last_30d": 132,
+      "unit_cost": 3.76
+    },
+    {
+      "product_id": "RB-2208",
+      "stock": 72,
+      "threshold": 12,
+      "sales_last_30d": 32,
+      "unit_cost": 3.59,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-2209",
+      "stock": 26,
+      "threshold": 10,
+      "sales_last_30d": 46,
+      "unit_cost": 7.14
+    },
+    {
+      "product_id": "RB-2210",
+      "stock": 18,
+      "threshold": 8,
+      "sales_last_30d": 38,
+      "unit_cost": 8.39
+    },
+    {
+      "product_id": "RB-2211",
+      "stock": 33,
+      "threshold": 18,
+      "sales_last_30d": 148,
+      "unit_cost": 2.84
+    },
+    {
+      "product_id": "RB-2212",
+      "stock": 88,
+      "threshold": 16,
+      "sales_last_30d": 52,
+      "unit_cost": 3.07,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1401",
+      "stock": 58,
+      "threshold": 20,
+      "sales_last_30d": 210,
+      "unit_cost": 1.29
+    },
+    {
+      "product_id": "RB-1405",
+      "stock": 42,
+      "threshold": 18,
+      "sales_last_30d": 176,
+      "unit_cost": 4.48
+    },
+    {
+      "product_id": "RB-1406",
+      "stock": 35,
+      "threshold": 18,
+      "sales_last_30d": 218,
+      "unit_cost": 3.9
+    },
+    {
+      "product_id": "RB-1409",
+      "stock": 44,
+      "threshold": 16,
+      "sales_last_30d": 154,
+      "unit_cost": 3.34
+    },
+    {
+      "product_id": "RB-1412",
+      "stock": 79,
+      "threshold": 10,
+      "sales_last_30d": 38,
+      "unit_cost": 3.83,
+      "slow_mover": true,
+      "content_quality": "needs_work",
+      "missing_attributes": [
+        "tree nut allergen prominence"
+      ]
+    },
+    {
+      "product_id": "RB-1501",
+      "stock": 88,
+      "threshold": 20,
+      "sales_last_30d": 244,
+      "unit_cost": 1.25
+    },
+    {
+      "product_id": "RB-1503",
+      "stock": 74,
+      "threshold": 22,
+      "sales_last_30d": 260,
+      "unit_cost": 1.07
+    },
+    {
+      "product_id": "RB-1505",
+      "stock": 31,
+      "threshold": 18,
+      "sales_last_30d": 186,
+      "unit_cost": 4.49
+    },
+    {
+      "product_id": "RB-1508",
+      "stock": 64,
+      "threshold": 18,
+      "sales_last_30d": 208,
+      "unit_cost": 1.09
+    },
+    {
+      "product_id": "RB-1516",
+      "stock": 52,
+      "threshold": 20,
+      "sales_last_30d": 232,
+      "unit_cost": 1.63
+    },
+    {
+      "product_id": "RB-1521",
+      "stock": 46,
+      "threshold": 12,
+      "sales_last_30d": 58,
+      "unit_cost": 2.63,
+      "content_quality": "needs_work",
+      "missing_attributes": [
+        "pickup substitution block for peanut allergy"
+      ]
+    },
+    {
+      "product_id": "RB-1601",
+      "stock": 94,
+      "threshold": 28,
+      "sales_last_30d": 304,
+      "unit_cost": 3.03
+    },
+    {
+      "product_id": "RB-1603",
+      "stock": 29,
+      "threshold": 22,
+      "sales_last_30d": 198,
+      "unit_cost": 3.49
+    },
+    {
+      "product_id": "RB-1605",
+      "stock": 38,
+      "threshold": 16,
+      "sales_last_30d": 130,
+      "unit_cost": 5.19
+    },
+    {
+      "product_id": "RB-1610",
+      "stock": 18,
+      "threshold": 8,
+      "sales_last_30d": 64,
+      "unit_cost": 8.83
+    },
+    {
+      "product_id": "RB-1612",
+      "stock": 22,
+      "threshold": 10,
+      "sales_last_30d": 72,
+      "unit_cost": 6.89
+    },
+    {
+      "product_id": "RB-1701",
+      "stock": 53,
+      "threshold": 22,
+      "sales_last_30d": 252,
+      "unit_cost": 1.69
+    },
+    {
+      "product_id": "RB-1704",
+      "stock": 62,
+      "threshold": 10,
+      "sales_last_30d": 28,
+      "unit_cost": 3.19,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1708",
+      "stock": 40,
+      "threshold": 16,
+      "sales_last_30d": 142,
+      "unit_cost": 2.5
+    },
+    {
+      "product_id": "RB-1712",
+      "stock": 28,
+      "threshold": 18,
+      "sales_last_30d": 174,
+      "unit_cost": 2.67
+    },
+    {
+      "product_id": "RB-1801",
+      "stock": 34,
+      "threshold": 18,
+      "sales_last_30d": 162,
+      "unit_cost": 2.71
+    },
+    {
+      "product_id": "RB-1803",
+      "stock": 30,
+      "threshold": 20,
+      "sales_last_30d": 188,
+      "unit_cost": 2.12
+    },
+    {
+      "product_id": "RB-1806",
+      "stock": 50,
+      "threshold": 10,
+      "sales_last_30d": 38,
+      "unit_cost": 2.87,
+      "slow_mover": true
+    },
+    {
+      "product_id": "RB-1901",
+      "stock": 46,
+      "threshold": 18,
+      "sales_last_30d": 164,
+      "unit_cost": 5.83
+    },
+    {
+      "product_id": "RB-1904",
+      "stock": 34,
+      "threshold": 18,
+      "sales_last_30d": 172,
+      "unit_cost": 5.17
+    },
+    {
+      "product_id": "RB-1907",
+      "stock": 20,
+      "threshold": 10,
+      "sales_last_30d": 74,
+      "unit_cost": 8.96
+    },
+    {
+      "product_id": "RB-2001",
+      "stock": 12,
+      "threshold": 10,
+      "sales_last_30d": 48,
+      "unit_cost": 14.24
+    },
+    {
+      "product_id": "RB-2106",
+      "stock": 23,
+      "threshold": 8,
+      "sales_last_30d": 62,
+      "unit_cost": 6.02
+    },
+    {
+      "product_id": "RB-2301",
+      "stock": 32,
+      "threshold": 8,
+      "sales_last_30d": 48,
+      "unit_cost": 8.24
+    }
+  ]
+}

@@ -2,29 +2,35 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 # What never belongs in a build context: version control, virtualenvs, installed
-# dependencies, build output, caches, and any local credential file. The paths under
-# `examples/` are spelled out as well as globbed, because the packer that uploads a
-# build context to a remote builder does not always honour a leading `**/`.
+# dependencies, build output, caches, and any local credential file.
+#
+# No pattern ends in a slash, and every globbed pattern is paired with its bare form.
+# The packer that uploads a build context to a remote builder anchors each rule as
+# `^rule$` against a path that carries no trailing slash, so `node_modules/` matches
+# nothing at all, and `**/node_modules` matches only below the top level.
 
-.git/
-.github/
-.venv/
-venv/
-**/node_modules/
-**/.next/
-**/__pycache__/
+.git
+.github
+.venv
+venv
+
+node_modules
+**/node_modules
+.next
+**/.next
+
+__pycache__
+**/__pycache__
+*.pyc
 **/*.pyc
-**/.pytest_cache/
-**/.ruff_cache/
-**/*.egg-info/
+.pytest_cache
+**/.pytest_cache
+.ruff_cache
+**/.ruff_cache
+*.egg-info
+**/*.egg-info
+
 .env
 **/.env
 **/.memory-store.json
 **/.memory-seeded.json
-
-examples/node_modules/
-examples/web-shared/node_modules/
-examples/*/storefront-web/node_modules/
-examples/*/merchant-web/node_modules/
-examples/*/storefront-web/.next/
-examples/*/merchant-web/.next/

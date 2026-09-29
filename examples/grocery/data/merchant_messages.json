@@ -1,0 +1,51 @@
+{
+  "_comment": "opened_at is shifted forward by whole weeks at load time, relative to dates_anchored_to (demo_common.merchant_fixtures.load_issues), the same shift merchant_metrics.json gets. Author the dates as if dates_anchored_to were today.",
+  "dates_anchored_to": "2026-09-09",
+  "issues": [
+    {
+      "issue_id": "ISS-201",
+      "order_id": "RBM-71042",
+      "kind": "delayed",
+      "listing_id": "RB-1007",
+      "summary": "Silver Birch cut the strawberry delivery in half after the weekly ad had already started",
+      "buyer_message_excerpt": "Third pickup slot in a row where the strawberries in the ad were not in my order. If you cannot get them, say so before I plan around them.",
+      "opened_at": "2026-09-07T07:45:00Z"
+    },
+    {
+      "issue_id": "ISS-202",
+      "order_id": "RBM-71077",
+      "kind": "damaged",
+      "listing_id": "RB-1202",
+      "summary": "North chilled case at Willow Fork held at 43 degrees overnight and the milk went out warm",
+      "buyer_message_excerpt": "The milk was barely cool when it was handed to me and it had gone off by the next morning. Whatever case it came out of is not holding temperature.",
+      "opened_at": "2026-09-07T13:10:00Z"
+    },
+    {
+      "issue_id": "ISS-203",
+      "order_id": "RBM-70988",
+      "kind": "return_spike",
+      "listing_id": "RB-1016",
+      "summary": "Four pico returns off the Brook Bend end cap this week, all citing the same sour smell",
+      "buyer_message_excerpt": "Opened it the day I bought it and it smelled fermented. Checked the date on the tub and it was already two days out.",
+      "opened_at": "2026-09-08T09:20:00Z"
+    },
+    {
+      "issue_id": "ISS-204",
+      "order_id": "RBM-71091",
+      "kind": "buyer_message",
+      "listing_id": "RB-1521",
+      "summary": "Shopper asks what the pickup team is allowed to substitute when the household has a peanut allergy on file",
+      "buyer_message_excerpt": "My profile says peanut allergy. If the spread I ordered is out, what exactly is your picker allowed to put in the bag instead? I need to know before I trust a pickup order again.",
+      "opened_at": "2026-09-08T11:05:00Z"
+    },
+    {
+      "issue_id": "ISS-205",
+      "order_id": "RBM-71108",
+      "kind": "buyer_message",
+      "listing_id": "RB-2206",
+      "summary": "Customer refused a prepared-food substitute at handoff because the allergen data was not verified",
+      "buyer_message_excerpt": "Someone swapped my noodles for a peanut sauce dish. Nothing on the label told me what was in it. Do not substitute into anything you cannot show me the allergens for.",
+      "opened_at": "2026-09-08T14:32:00Z"
+    }
+  ]
+}

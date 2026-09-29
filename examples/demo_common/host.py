@@ -12,6 +12,7 @@ import base64
 import logging
 import os
 import secrets
+import time
 from collections.abc import AsyncIterator, Awaitable, Callable, Coroutine, Sequence
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -78,28 +79,77 @@ def host_approval_default() -> bool:
     return os.environ.get("MERCHANT_REQUIRE_HOST_APPROVAL", "1") != "0"
 
 
+def _entra_token_provider() -> Callable[[], Awaitable[str]]:
+    """An async callable returning a Cognitive Services access token, refreshed when the
+    one in hand is close to expiring. `azure.identity.aio` needs `aiohttp`, which the
+    demos do not install, so the sync credential is called off the event loop."""
+    try:
+        from azure.identity import DefaultAzureCredential
+    except ModuleNotFoundError as error:  # pragma: no cover - import guard
+        raise RuntimeError(
+            "COMMERCE_DEMO_PROVIDER=foundry-anthropic needs azure-identity for Entra ID "
+            "auth: pip install azure-identity"
+        ) from error
+
+    scope = "https://cognitiveservices.azure.com/.default"
+    credential = DefaultAzureCredential()
+    held: dict[str, Any] = {}
+
+    async def provider() -> str:
+        token = held.get("token")
+        if token is None or token.expires_on - time.time() < 300:
+            token = await asyncio.to_thread(credential.get_token, scope)
+            held["token"] = token
+        return str(token.token)
+
+    return provider
+
+
 def demo_model_client() -> Any | None:
     """The client every example API hands both of its agents, or ``None`` to let the
     Anthropic SDK build its own from the environment.
 
-    ``COMMERCE_DEMO_PROVIDER=foundry-openai`` selects an OpenAI-compatible Microsoft
-    Foundry deployment through ``commerce_common.foundry_openai``, authenticated with
-    Entra ID rather than an API key: set ``FOUNDRY_RESOURCE`` (the account name) and
-    ``FOUNDRY_DEPLOYMENT``. Use it only where no Anthropic model is deployed; an Anthropic
-    deployment is better served by ``AsyncAnthropicFoundry``, and the adapter's trade-offs
-    are listed in its module docstring. ``docs/deployment.md`` covers every other platform.
+    ``COMMERCE_DEMO_PROVIDER`` selects a Microsoft Foundry deployment, authenticated with
+    Entra ID rather than an API key. Both branches read ``FOUNDRY_RESOURCE`` (the account
+    name) and ``FOUNDRY_DEPLOYMENT``:
+
+    ``foundry-anthropic`` is the one to reach for wherever an Anthropic model is
+    deployed. Foundry serves those on the Messages API this repo already speaks, so
+    ``AsyncAnthropicFoundry`` fills the ``client=`` seam with nothing translated and
+    cache breakpoints and thinking intact.
+
+    ``foundry-openai`` goes through ``commerce_common.foundry_openai`` instead, for a
+    tenant with no Anthropic deployment — Claude is a Marketplace offer, and a
+    subscription with Marketplace purchases disabled by policy cannot subscribe to one.
+    The adapter's trade-offs are listed in its module docstring.
+
+    ``docs/deployment.md`` covers every other platform.
     """
-    if os.environ.get("COMMERCE_DEMO_PROVIDER", "").lower() != "foundry-openai":
+    provider = os.environ.get("COMMERCE_DEMO_PROVIDER", "").lower()
+    if provider not in ("foundry-openai", "foundry-anthropic"):
         return None
-    from commerce_common.foundry_openai import AsyncFoundryOpenAI
 
     resource = os.environ.get("FOUNDRY_RESOURCE")
     deployment = os.environ.get("FOUNDRY_DEPLOYMENT")
     if not (resource or os.environ.get("FOUNDRY_BASE_URL")) or not deployment:
         raise RuntimeError(
-            "COMMERCE_DEMO_PROVIDER=foundry-openai needs FOUNDRY_DEPLOYMENT and either "
+            f"COMMERCE_DEMO_PROVIDER={provider} needs FOUNDRY_DEPLOYMENT and either "
             "FOUNDRY_RESOURCE or FOUNDRY_BASE_URL."
         )
+
+    if provider == "foundry-anthropic":
+        logger.info(
+            "Model calls go to Foundry deployment %r on the Messages API via Entra ID.",
+            deployment,
+        )
+        return anthropic.AsyncAnthropicFoundry(
+            resource=resource,
+            base_url=os.environ.get("FOUNDRY_BASE_URL") or None,
+            azure_ad_token_provider=_entra_token_provider(),
+        )
+
+    from commerce_common.foundry_openai import AsyncFoundryOpenAI
+
     logger.info("Model calls go to Foundry deployment %r via Entra ID.", deployment)
     return AsyncFoundryOpenAI(resource=resource, deployment=deployment)
 
@@ -109,7 +159,10 @@ def demo_model_name(configured: str) -> str:
     deployment for the configured Anthropic model, so an agent's own ``config.model``
     is not what served the turn; this reads the same environment that factory does.
     """
-    if os.environ.get("COMMERCE_DEMO_PROVIDER", "").lower() != "foundry-openai":
+    if os.environ.get("COMMERCE_DEMO_PROVIDER", "").lower() not in (
+        "foundry-openai",
+        "foundry-anthropic",
+    ):
         return configured
     return os.environ.get("FOUNDRY_DEPLOYMENT") or configured
 

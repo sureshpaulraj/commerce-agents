@@ -180,6 +180,37 @@ VERTICALS: dict[str, dict] = {
             ),
         ],
     },
+    "grocery": {
+        "base_url": "http://localhost:3005",
+        "view": ("orders", "Orders"),
+        "turns": [
+            (
+                "search-carousel",
+                "I need five weeknight dinners for a family of five. There's a peanut "
+                "allergy in the house, so nothing with peanuts anywhere near it.",
+            ),
+            (
+                "comparison",
+                "Is the family-size pack actually cheaper per ounce, or does it just "
+                "look that way?",
+            ),
+            (
+                # The plan card's figures come back from api/meals.py, not the model.
+                "meal-plan",
+                "That works — build me the plan and the basket to go with it, and keep "
+                "it under ninety dollars.",
+            ),
+            (
+                "allergen-refusal",
+                "Swap the cookies for those cocoa almond clusters instead.",
+            ),
+            (
+                "research-guide",
+                "Different question — how do substitutions work if something's out of "
+                "stock when you pick my order?",
+            ),
+        ],
+    },
 }
 
 
@@ -334,6 +365,36 @@ MERCHANT_TOURS: dict[str, dict] = {
                 "sales-drivers",
                 "Why did sales move over the last two weeks — which category or listings drove "
                 "it, and by how much?",
+            ),
+        ],
+    },
+    "grocery": {
+        "base_url": "http://localhost:3105",
+        "assistant_box_label": "Message the merchant assistant",
+        "views": [
+            ("catalog", "Catalog"),
+            ("orders", "Orders"),
+            ("inventory", "Inventory"),
+        ],
+        "turns": [
+            ("morning-digest", "What needs my attention this morning?"),
+            (
+                "change-preview",
+                "Restock the chicken cutlets with enough to cover the next month at the "
+                "current pace, and fix that listing's description so it covers what's been "
+                "missing. Show me both before anything goes live.",
+            ),
+        ],
+        "after": [
+            (
+                "trend-check",
+                "Riverbend Table feels like it's having a moment. Pull the numbers — is "
+                "prepared food really outperforming the rest of the store this month?",
+            ),
+            (
+                "sales-drivers",
+                "Where is shrink hurting margin most, and which departments drove the move "
+                "over the last two weeks?",
             ),
         ],
     },

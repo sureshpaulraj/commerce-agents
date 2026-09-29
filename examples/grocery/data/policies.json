@@ -1,0 +1,76 @@
+{
+  "policies": [
+    {
+      "policy_id": "allergen-information",
+      "title": "Allergen information",
+      "category": "safety",
+      "content": "Product pages and assistant answers summarize the allergen information available in Riverbend Market systems. The printed package label is the controlling source, because suppliers can change ingredients, shared equipment statements, or advisory language before a system update is complete. If the package label and this site differ, follow the package label and do not rely on the site summary. Where allergen data is missing, stale, or not verified in the system, Riverbend will not assert that a product is safe for a shopper with an allergy. For allergy-sensitive choices, review the package at pickup or delivery handoff and decline any item that does not meet the household need."
+    },
+    {
+      "policy_id": "pickup-delivery-substitutions",
+      "title": "Substitutions for pickup and delivery",
+      "category": "fulfillment",
+      "content": "When an ordered item is unavailable, Riverbend chooses a substitute by matching the department, size, flavor, dietary notes, price range, and any shopper instructions on the order. Store brands may be substituted for national-style brands when the shopper allows it, and lower-priced substitutes keep the lower price. Shoppers can review, accept, or refuse substitutes at handoff, and a refused substitute is removed from the order. Allergen-relevant substitutions are stricter: Riverbend does not substitute into or around an allergy concern using unverified data, and associates must leave the item unresolved or ask the shopper rather than guessing."
+    },
+    {
+      "policy_id": "age-restricted-items",
+      "title": "Age-restricted items",
+      "category": "compliance",
+      "content": "Beer, wine, cider, and any other age-restricted item require a valid government-issued ID at pickup or delivery handoff. The name on the order does not have to match the ID, but the person receiving the item must be of legal age and present at the handoff. Age-restricted items cannot be left unattended, placed in a trunk without verification, handed to a minor, or completed through contactless delivery. If ID verification fails, the restricted item is removed from the order and refunded according to the payment method used."
+    },
+    {
+      "policy_id": "pharmacy-boundary",
+      "title": "Riverbend Pharmacy storefront boundary",
+      "category": "pharmacy",
+      "content": "Riverbend Pharmacy can show store hours, refill status where account access allows it, pickup instructions, and general service information through the storefront. It does not provide clinical advice, diagnose symptoms, recommend treatment changes, or answer medication-specific safety questions through the shopping assistant. For medication counseling, side effects, interactions, vaccines, or prescription questions, speak directly with a Riverbend pharmacist or the prescribing clinician. Urgent medical concerns should be handled through appropriate medical care, not the storefront."
+    },
+    {
+      "policy_id": "riverbend-rewards-fuel",
+      "title": "Riverbend Rewards and fuel savings",
+      "category": "loyalty",
+      "content": "Riverbend Rewards members earn points on eligible grocery, prepared food, household, and pharmacy front-end purchases after account identification at checkout. Points convert to cents-per-gallon savings at Riverbend Fuel Stop in the increments shown in the app, and the discount applies only up to the posted gallon limit for the reward. Alcohol, tobacco-like restricted goods, lottery-style products if offered, prescriptions, taxes, fees, deposits, and gift cards do not earn points unless a promotion says otherwise. Fuel savings expire on the date shown in the Rewards account and cannot be redeemed for cash."
+    },
+    {
+      "policy_id": "pickup-delivery-windows-fees",
+      "title": "Pickup and delivery windows and fees",
+      "category": "fulfillment",
+      "content": "Curbside pickup windows are reserved in one-hour blocks and are free on orders of $35 or more; smaller pickup orders carry a $4.95 handling fee. Delivery windows are two-hour blocks where available, with a $7.95 delivery fee and a $35 order minimum. Heavy, bulky, floral, hot prepared-food, and age-restricted items may have narrower availability by store. Shoppers can change a window until store picking begins. If Riverbend misses a confirmed window, the store may waive the fulfillment fee, but product availability and weather can still require a revised handoff time."
+    },
+    {
+      "policy_id": "freshness-guarantee",
+      "title": "Freshness guarantee",
+      "category": "quality",
+      "content": "Riverbend stands behind produce, meat, seafood, dairy, bakery, floral, and Riverbend Table items that arrive below normal freshness standards. Report the concern through the order history or service desk with the order number, item, and condition. The store may refund, replace, or issue a credit depending on the item and timing. Freshness credit does not apply to items held outside safe temperature after handoff, items not picked up during the reserved window, or products used beyond the stated use-by or best-by guidance."
+    },
+    {
+      "policy_id": "returns-refunds",
+      "title": "Returns and refunds",
+      "category": "returns",
+      "content": "Most unopened grocery and household items can be returned with the receipt or order record within thirty days. Perishable items are handled under the freshness guarantee rather than returned to shelf. Alcohol returns follow local restrictions and may be refused once the handoff is complete. Pharmacy prescriptions are not returnable through the grocery storefront. Refunds go back to the original tender when possible; otherwise the store may issue Riverbend credit. Riverbend may limit returns that show misuse, missing order records, or repeated claims inconsistent with store handling."
+    },
+    {
+      "policy_id": "weekly-ad-price-accuracy",
+      "title": "Weekly ad and digital price accuracy",
+      "category": "pricing",
+      "content": "Weekly ad prices apply only during the advertised dates and at participating Riverbend banners named in the offer. Digital coupons must be clipped to the Riverbend Rewards account before checkout, and item size, variety, and quantity limits must match the offer. If a shelf tag, app page, or printed ad conflicts, the store will honor the lower eligible price for the matching item during the offer window unless the ad states a correction. Typographical errors, expired offers, and substitutions outside the offer terms do not create a new discount."
+    },
+    {
+      "policy_id": "snap-ebt",
+      "title": "SNAP and EBT payments",
+      "category": "payments",
+      "content": "Eligible food items can be paid with SNAP EBT where Riverbend supports EBT tender for the selected fulfillment method. Non-food items, alcohol, hot prepared foods, service fees, delivery fees, bag fees, deposits, and tips cannot be paid with SNAP benefits. Mixed baskets may require a second tender for non-eligible amounts. The storefront can show likely eligibility from item data, but the final tender decision is made by the payment processor and program rules. Refunds for EBT purchases return to the EBT account when required."
+    },
+    {
+      "policy_id": "recalls-withdrawals",
+      "title": "Recalls and product withdrawals",
+      "category": "safety",
+      "content": "When Riverbend receives a verified recall or product withdrawal, affected items are removed from sale as quickly as store systems and shelves can be updated. If purchase records identify shoppers who bought the item, Riverbend may send account, email, text, receipt, or in-app notices with the affected product, date range, and return or disposal instructions. Do not consume a recalled item. Bring it to the service desk or follow the notice instructions for refund or replacement. The assistant can summarize a posted recall notice but cannot narrow safety advice beyond the notice."
+    },
+    {
+      "policy_id": "prepared-foods-temperature",
+      "title": "Riverbend Table prepared-food handling",
+      "category": "food-safety",
+      "content": "Riverbend Table cold items are held chilled and hot items are held hot until the pickup or delivery handoff process begins. Eat ready-to-eat hot foods promptly or refrigerate them within two hours of handoff; cold prepared foods should be refrigerated as soon as possible and used by the date on the package. The storefront description is not a food-safety guarantee after the item leaves store control. For events, choose a pickup time close to serving time and use insulated transport for large prepared-food orders."
+    }
+  ]
+}
